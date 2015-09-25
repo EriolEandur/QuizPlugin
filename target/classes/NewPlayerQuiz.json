@@ -17,15 +17,15 @@
             "Z Size": 2,
             "Question Location":
                     {
-                        "X": 1630, "Y": 88, "Z":1010
+                        "X": 630, "Y": 88, "Z":1010
                     },
             "Success Location":
                     {
-                        "X": 1632, "Y": 88, "Z":1010
+                        "X": 632, "Y": 88, "Z":1010
                     },
             "Fail Location":
                     {
-                        "X": 1628, "Y": 88, "Z":1010
+                        "X": 628, "Y": 88, "Z":1010
                     }
         },{
             "Question Text": "What are the rules about teamspeak?",
@@ -51,15 +51,15 @@
             "Z Size": 2,
             "Question Location":
                     {
-                        "X": 1640, "Y": 88, "Z":1010
+                        "X": 640, "Y": 88, "Z":1010
                     },
             "Success Location":
                     {
-                        "X": 1642, "Y": 88, "Z":1010
+                        "X": 642, "Y": 88, "Z":1010
                     },
             "Fail Location":
                     {
-                        "X": 1620, "Y": 88, "Z":1010
+                        "X": 620, "Y": 88, "Z":1010
                     }
         },{
             "Question Text": "What is in the rules for chat and forum?",
@@ -82,15 +82,15 @@
             "Z Size": 2,
             "Question Location":
                     {
-                        "X": 1650, "Y": 88, "Z":1010
+                        "X": 650, "Y": 88, "Z":1010
                     },
             "Success Location":
                     {
-                        "X": 1652, "Y": 88, "Z":1010
+                        "X": 652, "Y": 88, "Z":1010
                     },
             "Fail Location":
                     {
-                        "X": 1620, "Y": 88, "Z":1010
+                        "X": 620, "Y": 88, "Z":1010
                     }
         },{
             "Question Text": "You answered all questions correctly.",
@@ -107,15 +107,15 @@
             "Z Size": 2,
             "Question Location":
                     {
-                        "X": 1660, "Y": 88, "Z":1010
+                        "X": 660, "Y": 88, "Z":1010
                     },
             "Success Location":
                     {
-                        "X": 1662, "Y": 88, "Z":1010
+                        "X": 662, "Y": 88, "Z":1010
                     },
             "Fail Location":
                     {
-                        "X": 1658, "Y": 88, "Z":1010
+                        "X": 658, "Y": 88, "Z":1010
                     }
         }
     ]
