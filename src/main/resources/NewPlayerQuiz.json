@@ -1,0 +1,122 @@
+{
+    "World": "world",
+    "Questions":
+    [
+        {
+            "Question Text": "Welcome to MCME, before you can enter Middle-Earth you have to do a quiz about the rules. You will find the rules at www.mcmiddleearth.com.",
+            "Answers":
+            [
+                {
+                    "Text":"Do you want to start now?",
+                    "Correct": true
+                }
+            ],
+            "Success Text": "When going on you will see a question and some possible answers. Type in if they are correct.",
+            "Fail Text": "Come back when you are ready to start the quiz.",
+            "X Size": 2,
+            "Z Size": 2,
+            "Question Location":
+                    {
+                        "X": 1630, "Y": 88, "Z":1010
+                    },
+            "Success Location":
+                    {
+                        "X": 1632, "Y": 88, "Z":1010
+                    },
+            "Fail Location":
+                    {
+                        "X": 1628, "Y": 88, "Z":1010
+                    }
+        },{
+            "Question Text": "What are the rules about teamspeak?",
+            "Answers":
+            [
+                {
+                    "Text":"You may always play music on teamspeak.",
+                    "Correct": false
+                },{
+                    "Text":"You may play music only on appropriate channels on teamspeak.",
+                    "Correct": true
+                },{
+                    "Text":"You may play music only with staff permission on Teamspeak.",
+                    "Correct": false
+                },{
+                    "Text":"You may NOT play music on Teamspeak.",
+                    "Correct": false
+                }
+            ],
+            "Success Text": "You know the rule, go ahead.",
+            "Fail Text": "Well, that was wrong, try again.",
+            "X Size": 2,
+            "Z Size": 2,
+            "Question Location":
+                    {
+                        "X": 1640, "Y": 88, "Z":1010
+                    },
+            "Success Location":
+                    {
+                        "X": 1642, "Y": 88, "Z":1010
+                    },
+            "Fail Location":
+                    {
+                        "X": 1620, "Y": 88, "Z":1010
+                    }
+        },{
+            "Question Text": "What is in the rules for chat and forum?",
+            "Answers":
+            [
+                {
+                    "Text":"You may post links to screenshots of builds you made yourselve on a private map.",
+                    "Correct": true
+                },{
+                    "Text":"You may post links you made on other servers.",
+                    "Correct": false
+                },{
+                    "Text":"You may tell in chat about a cool other server you found.",
+                    "Correct": false
+                }
+            ],
+            "Success Text": "You know the rule, go ahead.",
+            "Fail Text": "Well, that was wrong, try again.",
+            "X Size": 2,
+            "Z Size": 2,
+            "Question Location":
+                    {
+                        "X": 1650, "Y": 88, "Z":1010
+                    },
+            "Success Location":
+                    {
+                        "X": 1652, "Y": 88, "Z":1010
+                    },
+            "Fail Location":
+                    {
+                        "X": 1620, "Y": 88, "Z":1010
+                    }
+        },{
+            "Question Text": "You answered all questions correctly.",
+            "Answers":
+            [
+                {
+                    "Text":"Do you want to enter Middle-Earth now?",
+                    "Correct": true
+                }
+            ],
+            "Success Text": "Please help to keep MCME beeing a friendly place. ",
+            "Fail Text": "Come back when you are ready to enter Middle-Earth.",
+            "X Size": 2,
+            "Z Size": 2,
+            "Question Location":
+                    {
+                        "X": 1660, "Y": 88, "Z":1010
+                    },
+            "Success Location":
+                    {
+                        "X": 1662, "Y": 88, "Z":1010
+                    },
+            "Fail Location":
+                    {
+                        "X": 1658, "Y": 88, "Z":1010
+                    }
+        }
+    ]
+}
