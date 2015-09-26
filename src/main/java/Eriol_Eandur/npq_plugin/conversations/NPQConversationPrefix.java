@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 
 public class NPQConversationPrefix implements ConversationPrefix{
     
+    @Override
     public String getPrefix(ConversationContext context){
         int status = (Integer) context.getSessionData("Stat");
         String pname = ((Player)context.getForWhom()).getName();

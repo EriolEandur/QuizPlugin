@@ -10,6 +10,7 @@ import Eriol_Eandur.npq_plugin.Data.PluginData;
 import Eriol_Eandur.npq_plugin.Data.QuestionData;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -33,7 +34,7 @@ public class NPQPlugin extends JavaPlugin implements Listener{
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-    	if (cmd.getName().equalsIgnoreCase("reloadnpq")) { 
+    	if ((sender instanceof ConsoleCommandSender) && cmd.getName().equalsIgnoreCase("reloadnpq")) { 
             PluginData.loadFromFile();
             return true;
         }

@@ -33,11 +33,12 @@ public class PluginData {
 
     private static Plugin plugin;
     
+    private static final boolean debug = false;
    
     public static void initPluginData(Plugin pplugin){
         plugin = pplugin;
-        questions = new HashSet<QuestionData>();
-        playerInConversation = new HashSet<Player>();
+        questions = new HashSet<>();
+        playerInConversation = new HashSet<>();
         loadFromFile();
     }
     
@@ -85,12 +86,12 @@ public class PluginData {
             world = Bukkit.getWorld(worldName);
             if(world == null){
                 world = Bukkit.getWorlds().get(0);
-                plugin.getLogger().info("No world found with name "+worldName);
+                log("No world found with name "+worldName);
             }
-            HashSet<QuestionData> newQuestions = new HashSet<QuestionData>();
+            HashSet<QuestionData> newQuestions = new HashSet<>();
             JSONArray jArray = (JSONArray) jObject.get("Questions");
-            for(int i = 0; i<jArray.size();i++){
-                JSONObject jQuestion = (JSONObject) jArray.get(i);
+            for (Object questionObject : jArray) {
+                JSONObject jQuestion = (JSONObject) questionObject;
                 QuestionData question = new QuestionData();
                 question.setQuestionText(getString(jQuestion,"Question Text"));
                 question.setSuccessText(getString(jQuestion,"Success Text"));
@@ -101,11 +102,11 @@ public class PluginData {
                 question.setSuccessLocation(getLocation(jQuestion,"Success Location"));
                 question.setFailLocation(getLocation(jQuestion,"Fail Location"));
                 JSONArray jAnswers = (JSONArray) jQuestion.get("Answers");
-                ArrayList<Boolean> answers = new ArrayList<Boolean>();
-                ArrayList<String> answerTexts = new ArrayList<String>();
+                ArrayList<Boolean> answers = new ArrayList<>();
+                ArrayList<String> answerTexts = new ArrayList<>();
                 if(jAnswers!=null){
-                    for(int j = 0; j<jAnswers.size(); j++){
-                        JSONObject jAnswer = (JSONObject) jAnswers.get(j);
+                    for (Object answer : jAnswers) {
+                        JSONObject jAnswer = (JSONObject) answer;
                         answers.add(getBoolean(jAnswer,"Correct"));
                         answerTexts.add(getString(jAnswer,"Text"));
                     }
@@ -117,59 +118,56 @@ public class PluginData {
             questions = newQuestions;
         } catch (FileNotFoundException ex) {
             plugin.getLogger().log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            plugin.getLogger().log(Level.SEVERE, null, ex);
-        } catch (ParseException ex) {
+        } catch (IOException | ParseException ex) {
             plugin.getLogger().log(Level.SEVERE, null, ex);
         }
-
     }
     
     private static boolean getBoolean(JSONObject jObject, String key){
         Object input = jObject.get(key);
         if(input==null){
-            plugin.getLogger().info("No Boolean found with key: "+ key);
+            log("No Boolean found with key: "+ key);
             return false;
         }
-        plugin.getLogger().info("Boolean "+ (Boolean) input+" found with key: "+ key);
+        log("Boolean "+ (Boolean) input+" found with key: "+ key);
         return (Boolean) input;
     }
     
     private static int getInteger(JSONObject jObject, String key){
         Object input = jObject.get(key);
         if(input==null){
-            plugin.getLogger().info("No Integer found with key: "+ key);
+            log("No Integer found with key: "+ key);
             return 0;
         }
-        plugin.getLogger().info("Integer "+((Long) input).intValue()+" found with key: "+ key);
+        log("Integer "+((Long) input).intValue()+" found with key: "+ key);
         return ((Long) input).intValue();
     }
     
     private static String getString(JSONObject jObject, String key){
         Object input = jObject.get(key);
         if(input==null){
-            plugin.getLogger().info("No String found with key: "+ key);
+            log("No String found with key: "+ key);
             return "";
         }
-        plugin.getLogger().info("String "+(String) input+" found with key: "+ key);
+        log("String "+(String) input+" found with key: "+ key);
         return (String) input;
     }
     
     private static Location getLocation(JSONObject object, String key){
         JSONObject jObject = (JSONObject) object.get(key);
         if(jObject==null){
-            plugin.getLogger().info("No Object found with key: "+ key);
+            log("No Object found with key: "+ key);
             return new Location(world, 0,0,0);
         }
         Location loc =  new Location(world,  ((Long)jObject.get("X")).intValue(), 
                                              ((Long) jObject.get("Y")).intValue(), 
                                              ((Long) jObject.get("Z")).intValue());
-        if(loc == null){
-            plugin.getLogger().info("No valid Location found with key: "+ key);
-            return new Location(world, 0,0,0);
-        }
-        plugin.getLogger().info("Location "+loc.getBlockX()+" "+loc.getBlockY()+" "+loc.getBlockZ()+" with key: "+ key);
+        log("Location "+loc.getBlockX()+" "+loc.getBlockY()+" "+loc.getBlockZ()+" with key: "+ key);
         return loc;
     }
     
+    private static void log(String info){
+        if(debug)
+            plugin.getLogger().info(info);
+    }
 }
