@@ -19,7 +19,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 /**
  *
- * @author Ivan1pl
+ * @author Eriol_Eandur
  */
 public class NPQPlugin extends JavaPlugin implements Listener{
     
