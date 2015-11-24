@@ -10,23 +10,14 @@ import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Location;
 
-public class QuestionData extends LocationData{
+public class LocationData {
     
     @Getter
     @Setter
-    private String questionText, successText, failText;
+    private Location location;
     
     @Getter
     @Setter
-    private ArrayList<String> answerTexts;
-    
-    @Getter
-    @Setter
-    private ArrayList<Boolean> answers;
-    
-    @Getter
-    @Setter
-    private Location failLocation, successLocation;
-    
+    private int xSize,zSize;
 
 }

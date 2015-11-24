@@ -5,12 +5,13 @@
  */
 package Eriol_Eandur.npq_plugin.Data;
 
-import java.io.BufferedReader;
+import Eriol_Eandur.npq_plugin.NPQPlugin;
+import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Scanner;
 import java.util.Set;
 import java.util.logging.Level;
 import org.bukkit.Bukkit;
@@ -26,6 +27,8 @@ import org.json.simple.parser.ParseException;
 public class PluginData {
     
     private static Set<QuestionData> questions;
+    private static Set<InformationData> informations;
+    private static Set<TeleportationData> teleportations;
     
     private static World world;
     
@@ -35,6 +38,9 @@ public class PluginData {
     
     private static final boolean debug = false;
    
+    private static final File quizDataFile = new File(NPQPlugin.getPluginInstance().getDataFolder()
+                                                   + File.separator + "QuizData.json");
+    
     public static void initPluginData(Plugin pplugin){
         plugin = pplugin;
         questions = new HashSet<>();
@@ -54,17 +60,30 @@ public class PluginData {
         return playerInConversation.contains(player);
     }
     
-    public static QuestionData questionFor(Location location){
+    private static LocationData dataFor(Location location, Set locationData){
         if(world==location.getWorld()){
-            for(QuestionData question: questions){
-                Location qLoc = question.getQuestionLocation();
-                if(isInside(location.getBlockX(),qLoc.getBlockX(),question.getXSize())
-                   && isInside(location.getBlockZ(),qLoc.getBlockZ(),question.getZSize())){
-                    return question;
+            for(Object dataObject: locationData){
+                LocationData data = (LocationData) dataObject;
+                Location qLoc = data.getLocation();
+                if(isInside(location.getBlockX(),qLoc.getBlockX(),data.getXSize())
+                   && isInside(location.getBlockZ(),qLoc.getBlockZ(),data.getZSize())){
+                    return data;
                 }
             }
         }
         return null;
+    }
+    
+    public static QuestionData questionFor(Location location) {
+        return (QuestionData) dataFor(location, questions);
+    }
+ 
+    public static InformationData infoFor(Location location) {
+        return (InformationData) dataFor(location, informations);
+    }
+ 
+    public static TeleportationData teleportFor(Location location) {
+        return (TeleportationData) dataFor(location, teleportations);
     }
  
     private static boolean isInside(int pBlock, int qBlock, int qSize){
@@ -73,23 +92,56 @@ public class PluginData {
 
     public static void loadFromFile(){
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("NewPlayerQuiz.json"));
+            Scanner reader = new Scanner(quizDataFile);
             String input = "";
-            int test =0;
-            while(reader.ready()){
-                test++;
-                input = input+reader.readLine();
+            while(reader.hasNext()){
+                input = input+reader.nextLine();
             }
             reader.close();
-           JSONObject jObject = (JSONObject) new JSONParser().parse(input);
+            JSONObject jObject = (JSONObject) new JSONParser().parse(input);
             String worldName = (String) jObject.get("World");
             world = Bukkit.getWorld(worldName);
             if(world == null){
                 world = Bukkit.getWorlds().get(0);
                 log("No world found with name "+worldName);
             }
-            HashSet<QuestionData> newQuestions = new HashSet<>();
-            JSONArray jArray = (JSONArray) jObject.get("Questions");
+            
+            informations = new HashSet<>();
+            JSONArray jArray = (JSONArray) jObject.get("Informations");
+            if(jArray != null)
+                for (Object infoObject : jArray) {
+                    JSONObject jInfo = (JSONObject) infoObject;
+                    InformationData info = new InformationData();
+                    info.setInfoText(getString(jInfo,"Information Text"));
+                    info.setXSize(getInteger(jInfo,"X Size"));
+                    info.setZSize(getInteger(jInfo,"Z Size"));
+                    info.setLocation(getLocation(jInfo,"Location"));
+                    informations.add(info);
+                }
+            
+            teleportations = new HashSet<>();
+            jArray = (JSONArray) jObject.get("Teleportations");
+            if(jArray != null)
+                for (Object teleportObject : jArray) {
+                    JSONObject jTeleport = (JSONObject) teleportObject;
+                    TeleportationData teleport = new TeleportationData();
+                    teleport.setXSize(getInteger(jTeleport,"X Size"));
+                    teleport.setZSize(getInteger(jTeleport,"Z Size"));
+                    teleport.setLocation(getLocation(jTeleport,"Location"));
+                    String targetWorldName = (String) jTeleport.get("Target World");
+                    World targetWorld = Bukkit.getWorld(targetWorldName);
+                    if(targetWorld == null){
+                        targetWorld = world;
+                        log("No target world found with name "+targetWorldName);
+                    }
+                    Location targetLoc = getLocation(jTeleport,"Target Location");
+                    targetLoc.setWorld(targetWorld);
+                    teleport.setTargetLocation(targetLoc);
+                    teleportations.add(teleport);
+                }
+            
+            questions = new HashSet<>();
+            jArray = (JSONArray) jObject.get("Questions");
             for (Object questionObject : jArray) {
                 JSONObject jQuestion = (JSONObject) questionObject;
                 QuestionData question = new QuestionData();
@@ -98,7 +150,7 @@ public class PluginData {
                 question.setFailText(getString(jQuestion,"Fail Text"));
                 question.setXSize(getInteger(jQuestion,"X Size"));
                 question.setZSize(getInteger(jQuestion,"Z Size"));
-                question.setQuestionLocation(getLocation(jQuestion,"Question Location"));
+                question.setLocation(getLocation(jQuestion,"Question Location"));
                 question.setSuccessLocation(getLocation(jQuestion,"Success Location"));
                 question.setFailLocation(getLocation(jQuestion,"Fail Location"));
                 JSONArray jAnswers = (JSONArray) jQuestion.get("Answers");
@@ -113,12 +165,11 @@ public class PluginData {
                 }
                 question.setAnswerTexts(answerTexts);
                 question.setAnswers(answers);
-                newQuestions.add(question);
+                questions.add(question);
             }
-            questions = newQuestions;
         } catch (FileNotFoundException ex) {
             plugin.getLogger().log(Level.SEVERE, null, ex);
-        } catch (IOException | ParseException ex) {
+        } catch (ParseException ex) {
             plugin.getLogger().log(Level.SEVERE, null, ex);
         }
     }
