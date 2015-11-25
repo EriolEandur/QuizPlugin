@@ -3,7 +3,7 @@
     "Informations": 
     [
         {
-            "Information Text": "Congrats, you answered all questions correctly. Please help MCME beeing a friendly place. You may now enter Middle-Earth, just follow the path.",
+            "Information Text": "Congrats, you answered all questions correctly. Please help MCME beeing a friendly place. You may now enter Middle-Earth, just follow the path across the water.",
             "X Size": 3,
             "Z Size": 3,
             "Location":
@@ -31,7 +31,7 @@
     "Questions":
     [
         {
-            "Question Text": "Welcome to MCME, before you can enter Middle-Earth you have to do a quiz about the rules. You will find the rules at www.mcmiddleearth.com.",
+            "Question Text": "efore you can enter Middle-Earth you have to do a quiz about the rules. You will find the rules at www.mcmiddleearth.com.",
             "Answers":
             [
                 {
@@ -39,7 +39,7 @@
                     "Correct": true
                 }
             ],
-            "Success Text": "When going on you will see a question and some possible answers. Type in if they are correct.",
+            "Success Text": "When going on you will see a question and some possible answers. Press 't' and type in if they are correct.",
             "Fail Text": "Come back when you are ready to start the quiz.",
             "X Size": 2,
             "Z Size": 2,
@@ -148,7 +148,152 @@
                     },
             "Success Location":
                     {
-                        "X": -1353, "Y": 49, "Z":1206
+                        "X": -1352, "Y": 49, "Z":1206
+                    },
+            "Fail Location":
+                    {
+                        "X": -1349, "Y": 40, "Z":1142
+                    }
+        },{
+            "Question Text": "What is in the rules for chat and forum?",
+            "Answers":
+            [
+                {
+                    "Text":"You may complain about the behaviour of an other player.",
+                    "Correct": true
+                },{
+                    "Text":"You may complain about a new law in your country.",
+                    "Correct": false
+                },{
+                    "Text":"You may discuss about the behaviour of fundamental christians in your town.",
+                    "Correct": false
+                },{
+                    "Text":"You may ask for a job in chat.",
+                    "Correct": true
+                },{
+                    "Text":"If a question of yours is not answered, try again by asking until you get an answer.",
+                    "Correct": false
+                },{
+                    "Text":"You may post links to videos showing high level of violence.",
+                    "Correct": false
+                }
+            ],
+            "Success Text": "You know the rule, go ahead.",
+            "Fail Text": "Well, that was wrong, try again.",
+            "X Size": 2,
+            "Z Size": 2,
+            "Question Location":
+                    {
+                        "X": -1346, "Y": 48, "Z":1215
+                    },
+            "Success Location":
+                    {
+                        "X": -1344, "Y": 47, "Z":1216
+                    },
+            "Fail Location":
+                    {
+                        "X": -1349, "Y": 40, "Z":1142
+                    }
+        },{
+            "Question Text": "What are the rules for building as an Adventurer?",
+            "Answers":
+            [
+                {
+                    "Text":"Building freely on the build world is allowed.",
+                    "Correct": false
+                },{
+                    "Text":"Building freely on the plotworld is allowed.",
+                    "Correct": false
+                },{
+                    "Text":"Building in Plotbuilds is allowed.",
+                    "Correct": true
+                },{
+                    "Text":"Building during jobs is allowed.",
+                    "Correct": true
+                }
+            ],
+            "Success Text": "You know the rule, go ahead.",
+            "Fail Text": "Well, that was wrong, try again.",
+            "X Size": 2,
+            "Z Size": 2,
+            "Question Location":
+                    {
+                        "X": -1331, "Y": 45, "Z":1227
+                    },
+            "Success Location":
+                    {
+                        "X": -1331, "Y": 45, "Z":1229
+                    },
+            "Fail Location":
+                    {
+                        "X": -1349, "Y": 40, "Z":1142
+                    }
+        },{
+            "Question Text": "Which Mods are allowed on MCME?",
+            "Answers":
+            [
+                {
+                    "Text":"You may only use official MCME Mods.",
+                    "Correct": false
+                },{
+                    "Text":"You may use Mods to show an ingame map.",
+                    "Correct": true
+                },{
+                    "Text":"You may use fly Mods.",
+                    "Correct": false
+                },{
+                    "Text":"You may use speed Mods.",
+                    "Correct": false
+                },{
+                    "Text":"You may use mods to enhance quality like Optifine and Shaders.",
+                    "Correct": true
+                }
+            ],
+            "Success Text": "You know the rule, go ahead.",
+            "Fail Text": "Well, that was wrong, try again.",
+            "X Size": 2,
+            "Z Size": 2,
+            "Question Location":
+                    {
+                        "X": -1337, "Y": 48, "Z":1244
+                    },
+            "Success Location":
+                    {
+                        "X": -1337, "Y": 48, "Z":1245
+                    },
+            "Fail Location":
+                    {
+                        "X": -1349, "Y": 40, "Z":1142
+                    }
+        },{
+            "Question Text": "What is the rule about your forum name?",
+            "Answers":
+            [
+                {
+                    "Text":"Your forum name must be Middle-Earth related.",
+                    "Correct": false
+                },{
+                    "Text":"Your forum name must be your MC ingame name.",
+                    "Correct": true
+                },{
+                    "Text":"Your forum name must be your real name.",
+                    "Correct": false
+                },{
+                    "Text":"Choose it freely.",
+                    "Correct": false
+                }
+            ],
+            "Success Text": "You know the rule, go ahead.",
+            "Fail Text": "Well, that was wrong, try again.",
+            "X Size": 2,
+            "Z Size": 2,
+            "Question Location":
+                    {
+                        "X": -1350, "Y": 43, "Z":1277
+                    },
+            "Success Location":
+                    {
+                        "X": -1351, "Y": 42, "Z":1279
                     },
             "Fail Location":
                     {
