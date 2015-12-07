@@ -8,12 +8,12 @@ package Eriol_Eandur.npq_plugin.Data;
 import Eriol_Eandur.npq_plugin.NPQPlugin;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.logging.Level;
+import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -30,13 +30,14 @@ public class PluginData {
     private static Set<InformationData> informations;
     private static Set<TeleportationData> teleportations;
     
+    @Getter
     private static World world;
     
     private static Set<Player> playerInConversation;
 
     private static Plugin plugin;
     
-    private static final boolean debug = false;
+    private static final boolean debug = true;
    
     private static final File quizDataFile = new File(NPQPlugin.getPluginInstance().getDataFolder()
                                                    + File.separator + "QuizData.json");
@@ -220,5 +221,24 @@ public class PluginData {
     private static void log(String info){
         if(debug)
             plugin.getLogger().info(info);
+    }
+    
+    public static void debugLocations(Player player) {
+        player.sendMessage("World: "+world.getName());
+        for(QuestionData data: questions) {
+            player.sendMessage("Question: " + data.getLocation().getBlockX()+" "
+                                            + data.getLocation().getBlockY()+" "
+                                            + data.getLocation().getBlockZ());
+        }
+        for(InformationData data: informations) {
+            player.sendMessage("Information: " + data.getLocation().getBlockX()+" "
+                                            + data.getLocation().getBlockY()+" "
+                                            + data.getLocation().getBlockZ());
+        }
+        for(TeleportationData data: teleportations) {
+            player.sendMessage("Teleportation: " + data.getLocation().getBlockX()+" "
+                                            + data.getLocation().getBlockY()+" "
+                                            + data.getLocation().getBlockZ());
+        }
     }
 }

@@ -10,7 +10,6 @@ import Eriol_Eandur.npq_plugin.conversations.QuestionConversationFactory;
 import Eriol_Eandur.npq_plugin.Data.PluginData;
 import Eriol_Eandur.npq_plugin.Data.QuestionData;
 import Eriol_Eandur.npq_plugin.Data.TeleportationData;
-import Eriol_Eandur.npq_plugin.conversations.NPQConversationPrefix;
 import lombok.Getter;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -47,6 +46,19 @@ public class NPQPlugin extends JavaPlugin implements Listener{
     	if ((sender instanceof ConsoleCommandSender) && cmd.getName().equalsIgnoreCase("reloadnpq")) { 
             PluginData.loadFromFile();
             return true;
+        }
+        if((sender instanceof Player) && cmd.getName().equalsIgnoreCase("debugnpq")) {
+            if(args.length==0){
+                PluginData.debugLocations((Player) sender);
+            }
+            else if (args[0].equalsIgnoreCase("world")) {
+                sender.sendMessage("World: "+(((Player)sender).getLocation().getWorld()==PluginData.getWorld() ? "true" : "false"));
+            }
+            else if (args[0].equalsIgnoreCase("here")) {
+                sender.sendMessage("Question "+(PluginData.questionFor(((Player)sender).getLocation()) == null ? "false" : "true"));
+                sender.sendMessage("Information "+(PluginData.infoFor(((Player)sender).getLocation()) == null ? "false" : "true"));
+                sender.sendMessage("Teleportation "+(PluginData.teleportFor(((Player)sender).getLocation()) == null ? "false" : "true"));
+            }
         }
         return false;
     }
