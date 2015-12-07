@@ -10,7 +10,6 @@ import Eriol_Eandur.npq_plugin.conversations.QuestionConversationFactory;
 import Eriol_Eandur.npq_plugin.Data.PluginData;
 import Eriol_Eandur.npq_plugin.Data.QuestionData;
 import Eriol_Eandur.npq_plugin.Data.TeleportationData;
-import Eriol_Eandur.npq_plugin.conversations.NPQConversationPrefix;
 import lombok.Getter;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
