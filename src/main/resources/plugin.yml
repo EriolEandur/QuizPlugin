@@ -2,10 +2,15 @@ name: NPQplugin
 main: Eriol_Eandur.npq_plugin.NPQPlugin
 version: 0.1
 description: New Player Quiz Plugin
+load: POSTWORLD
+depend: [Multiverse-Core]
 commands:
     reloadnpq:
         description: reloads New player Quiz
         usage: TBA
+    debug:
+        description: shows debug informations
+        usage: /debug /debug world or /debug here
 permissions:
     npquiz.staff:
         default: op
