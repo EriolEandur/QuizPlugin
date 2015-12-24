@@ -18,7 +18,7 @@ public class NPQConversationPrefix implements ConversationPrefix{
         String pname = ((Player)context.getForWhom()).getName();
         switch(status){
             case QuestionConversationFactory.CS_ANSWER:
-                return ChatColor.GOLD+"[New Player Quiz] "+ChatColor.YELLOW+"Correct? " +ChatColor.GOLD;
+                return ChatColor.GOLD+"[New Player Quiz] ";
             case QuestionConversationFactory.CS_INPUT:
                 return ChatColor.GRAY+"<"+pname+"> "+ChatColor.WHITE;
             case QuestionConversationFactory.CS_QUESTION:

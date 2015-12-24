@@ -47,17 +47,19 @@ public class NPQPlugin extends JavaPlugin implements Listener{
             PluginData.loadFromFile();
             return true;
         }
-        if((sender instanceof Player) && cmd.getName().equalsIgnoreCase("debug")) {
+        if((sender instanceof Player) && cmd.getName().equalsIgnoreCase("debugnpq")) {
             if(args.length==0){
                 PluginData.debugLocations((Player) sender);
             }
             else if (args[0].equalsIgnoreCase("world")) {
                 sender.sendMessage("World: "+(((Player)sender).getLocation().getWorld()==PluginData.getWorld() ? "true" : "false"));
+                return true;
             }
             else if (args[0].equalsIgnoreCase("here")) {
                 sender.sendMessage("Question "+(PluginData.questionFor(((Player)sender).getLocation()) == null ? "false" : "true"));
                 sender.sendMessage("Information "+(PluginData.infoFor(((Player)sender).getLocation()) == null ? "false" : "true"));
                 sender.sendMessage("Teleportation "+(PluginData.teleportFor(((Player)sender).getLocation()) == null ? "false" : "true"));
+                return true;
             }
         }
         return false;
