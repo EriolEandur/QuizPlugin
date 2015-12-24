@@ -35,7 +35,7 @@
             "Answers":
             [
                 {
-                    "Text":"Do you want to start now?",
+                    "Text":"You want to start now? Open chat with 't' and type in 'yes' or 'no'.",
                     "Correct": true
                 }
             ],
@@ -181,7 +181,7 @@
             "Success Text": "You know the rule, go ahead.",
             "Fail Text": "Well, that was wrong, try again.",
             "X Size": 2,
-            "Z Size": 3,
+            "Z Size": 2,
             "Question Location":
                     {
                         "X": -1346, "Y": 48, "Z":1215
@@ -214,7 +214,7 @@
             ],
             "Success Text": "You know the rule, go ahead.",
             "Fail Text": "Well, that was wrong, try again.",
-            "X Size": 3,
+            "X Size": 2,
             "Z Size": 2,
             "Question Location":
                     {
@@ -252,7 +252,7 @@
             "Success Text": "You know the rule, go ahead.",
             "Fail Text": "Well, that was wrong, try again.",
             "X Size": 2,
-            "Z Size": 3,
+            "Z Size": 2,
             "Question Location":
                     {
                         "X": -1337, "Y": 48, "Z":1244
@@ -285,7 +285,7 @@
             ],
             "Success Text": "You know the rule, go ahead.",
             "Fail Text": "Well, that was wrong, try again.",
-            "X Size": 3,
+            "X Size": 2,
             "Z Size": 2,
             "Question Location":
                     {

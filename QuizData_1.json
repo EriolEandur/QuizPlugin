@@ -31,11 +31,11 @@
     "Questions":
     [
         {
-            "Question Text": "efore you can enter Middle-Earth you have to do a quiz about the rules. You will find the rules at www.mcmiddleearth.com.",
+            "Question Text": "Before you can enter Middle-Earth you have to do a quiz about the rules. You will find the rules at www.mcmiddleearth.com.",
             "Answers":
             [
                 {
-                    "Text":"Do you want to start now?",
+                    "Text":"Do you want to start now? Open chat with 't' and type in 'yes' or 'no'.",
                     "Correct": true
                 }
             ],
