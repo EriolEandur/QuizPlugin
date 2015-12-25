@@ -43,8 +43,15 @@ public class NPQPlugin extends JavaPlugin implements Listener{
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-    	if ((sender instanceof ConsoleCommandSender) && cmd.getName().equalsIgnoreCase("reloadnpq")) { 
-            PluginData.loadFromFile();
+    	sender.sendMessage(cmd.getName());
+        if ((sender instanceof ConsoleCommandSender) && cmd.getName().equalsIgnoreCase("reloadnpq")) { 
+            PluginData.setLogReceiver(null);
+            reloadQuiz(args);
+            return true;
+        }
+    	if ((sender instanceof Player) && cmd.getName().equalsIgnoreCase("reloadnpq")) { 
+            PluginData.setLogReceiver((Player)sender);
+            reloadQuiz(args);
             return true;
         }
         if((sender instanceof Player) && cmd.getName().equalsIgnoreCase("debugnpq")) {
@@ -53,11 +60,13 @@ public class NPQPlugin extends JavaPlugin implements Listener{
             }
             else if (args[0].equalsIgnoreCase("world")) {
                 sender.sendMessage("World: "+(((Player)sender).getLocation().getWorld()==PluginData.getWorld() ? "true" : "false"));
+                return true;
             }
             else if (args[0].equalsIgnoreCase("here")) {
                 sender.sendMessage("Question "+(PluginData.questionFor(((Player)sender).getLocation()) == null ? "false" : "true"));
                 sender.sendMessage("Information "+(PluginData.infoFor(((Player)sender).getLocation()) == null ? "false" : "true"));
                 sender.sendMessage("Teleportation "+(PluginData.teleportFor(((Player)sender).getLocation()) == null ? "false" : "true"));
+                return true;
             }
         }
         return false;
@@ -86,8 +95,17 @@ public class NPQPlugin extends JavaPlugin implements Listener{
             if(teleport!=PluginData.teleportFor(event.getFrom())) {
                 event.getPlayer().teleport(teleport.getTargetLocation(), 
                                            PlayerTeleportEvent.TeleportCause.PLUGIN);
+                PluginData.log(teleport.getTargetLocation().getWorld().getName());
             }
         }
     }
 
+    private void reloadQuiz(String[] args) {
+        if(args.length<1) {
+            PluginData.loadFromFile(null);
+        }
+        else {
+            PluginData.loadFromFile(args[0]);
+        }
+    }
 }

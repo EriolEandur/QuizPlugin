@@ -10,10 +10,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.logging.Level;
 import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -38,15 +40,18 @@ public class PluginData {
     private static Plugin plugin;
     
     private static final boolean debug = true;
+    
+    @Setter
+    private static Player logReceiver = null;
    
-    private static final File quizDataFile = new File(NPQPlugin.getPluginInstance().getDataFolder()
-                                                   + File.separator + "QuizData.json");
+    private static final File quizDataDir = NPQPlugin.getPluginInstance().getDataFolder();
+    private static final File quizDataFile = new File(quizDataDir+ File.separator + "QuizData.json");
     
     public static void initPluginData(Plugin pplugin){
         plugin = pplugin;
         questions = new HashSet<>();
         playerInConversation = new HashSet<>();
-        loadFromFile();
+        loadFromFile(null);
     }
     
     public static void addPlayerToConversation(Player player){
@@ -68,6 +73,9 @@ public class PluginData {
                 Location qLoc = data.getLocation();
                 if(isInside(location.getBlockX(),qLoc.getBlockX(),data.getXSize())
                    && isInside(location.getBlockZ(),qLoc.getBlockZ(),data.getZSize())){
+                    if(data instanceof TeleportationData) {
+                        log("found target world: "+((TeleportationData)data).getTargetLocation().getWorld().getName());
+                    }
                     return data;
                 }
             }
@@ -91,9 +99,16 @@ public class PluginData {
         return qBlock-qSize<pBlock && qBlock+qSize>pBlock;
     }
 
-    public static void loadFromFile(){
+    public static void loadFromFile(String filename){
+        File file;
+        if(filename == null) {
+            file=quizDataFile;
+        }
+        else{
+            file = new File(quizDataDir, filename+".json");
+        }
         try {
-            Scanner reader = new Scanner(quizDataFile);
+            Scanner reader = new Scanner(file);
             String input = "";
             while(reader.hasNext()){
                 input = input+reader.nextLine();
@@ -105,6 +120,9 @@ public class PluginData {
             if(world == null){
                 world = Bukkit.getWorlds().get(0);
                 log("No world found with name "+worldName);
+            }
+            else {
+                log("Quiz World: "+world.getName());
             }
             
             informations = new HashSet<>();
@@ -130,15 +148,25 @@ public class PluginData {
                     teleport.setZSize(getInteger(jTeleport,"Z Size"));
                     teleport.setLocation(getLocation(jTeleport,"Location"));
                     String targetWorldName = (String) jTeleport.get("Target World");
+                    log("targetWorldName: "+ targetWorldName);
                     World targetWorld = Bukkit.getWorld(targetWorldName);
                     if(targetWorld == null){
                         targetWorld = world;
-                        log("No target world found with name "+targetWorldName);
+                        log("No target world found with name: "+targetWorldName);
+                        List<World> worldList= Bukkit.getWorlds();
+                        log("Worlds: ");
+                        for(World wrld: worldList) {
+                            log(wrld.getName());
+                        }
+                    }
+                    else {
+                        log("Target World: "+targetWorld.getName());
                     }
                     Location targetLoc = getLocation(jTeleport,"Target Location");
                     targetLoc.setWorld(targetWorld);
                     teleport.setTargetLocation(targetLoc);
                     teleportations.add(teleport);
+                    log("Saved target world: "+teleport.getTargetLocation().getWorld().getName());
                 }
             
             questions = new HashSet<>();
@@ -218,9 +246,14 @@ public class PluginData {
         return loc;
     }
     
-    private static void log(String info){
+    public static void log(String info){
         if(debug)
-            plugin.getLogger().info(info);
+            if(logReceiver==null) {
+                plugin.getLogger().info(info);
+            }
+            else {
+                logReceiver.sendMessage("."+info+".");
+            }
     }
     
     public static void debugLocations(Player player) {

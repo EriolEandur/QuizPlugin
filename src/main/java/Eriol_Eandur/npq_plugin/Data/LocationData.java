@@ -5,7 +5,6 @@
  */
 package Eriol_Eandur.npq_plugin.Data;
 
-import java.util.ArrayList;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Location;
