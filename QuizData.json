@@ -4,8 +4,8 @@
     [
         {
             "Information Text": "Congrats, you answered all questions correctly. Please help MCME beeing a friendly place. You may now enter Middle-Earth, just follow the path across the water.",
-            "X Size": 3,
-            "Z Size": 3,
+            "X Size": 5,
+            "Z Size": 5,
             "Location":
                     {
                         "X": -1352, "Y": 33, "Z":1325
@@ -259,7 +259,7 @@
                     },
             "Success Location":
                     {
-                        "X": -1337, "Y": 48, "Z":1245
+                        "X": -1339, "Y": 48, "Z":1245
                     },
             "Fail Location":
                     {
