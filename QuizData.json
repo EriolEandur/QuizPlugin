@@ -3,7 +3,16 @@
     "Informations": 
     [
         {
-            "Information Text": "Congrats, you answered all questions correctly. Please help MCME beeing a friendly place. You may now enter Middle-Earth, just follow the path across the water.",
+            "Information Text": "Welome at MCME. Before you can enter Middle-earth you have to do a quiz about the rules. You will find the rules at http://www.mcmiddleearth.com/help/terms. When a question is presented type 't' to open game chat and type in the answer.",
+            "X Size": 1,
+            "Z Size": 1,
+            "Location":
+                    {
+                        "X": -1347, "Y": 40, "Z":1141
+                    }
+        },
+        {
+            "Information Text": "Congrats, you answered all questions correctly. Please help MCME beeing a friendly place. You may now enter Middle-earth, just follow the path across the water.",
             "X Size": 5,
             "Z Size": 5,
             "Location":
@@ -25,17 +34,18 @@
             "Target Location":
                     {
                         "X": -4087, "Y": 40, "Z":-4445
-                    }
+                    },
+            "Broadcast": "§6[§4Server§6] §2@p §9§ljust joined! Welcome to Middle Earth!"
          }
     ],
     "Questions":
     [
         {
-            "Question Text": "Before you can enter Middle-Earth you have to do a quiz about the rules. You will find the rules at www.mcmiddleearth.com.",
+            "Question Text": "Here the quiz starts",
             "Answers":
             [
                 {
-                    "Text":"You want to start now? Open chat with 't' and type in 'yes' or 'no'.",
+                    "Text":"You want to start now. Open chat with 't' and type in 'yes' or 'no'.",
                     "Correct": true
                 }
             ],
@@ -66,7 +76,7 @@
                     "Text":"You may play music only on appropriate channels on teamspeak.",
                     "Correct": true
                 },{
-                    "Text":"You may play music only with staff permission on Teamspeak.",
+                    "Text":"You permission from staff to play music on Teamspeak.",
                     "Correct": false
                 },{
                     "Text":"You may NOT play music on Teamspeak.",
@@ -94,7 +104,7 @@
             "Answers":
             [
                 {
-                    "Text":"You may post links to screenshots of builds you made yourselve on a private map.",
+                    "Text":"You may post links to screenshots of builds you made yourself on a private map.",
                     "Correct": true
                 },{
                     "Text":"You may post links you made on other servers.",
@@ -125,7 +135,7 @@
             "Answers":
             [
                 {
-                    "Text":"You must allways use English.",
+                    "Text":"You must always use English.",
                     "Correct": false
                 },{
                     "Text":"You must use English in private chat messages.",
@@ -270,7 +280,7 @@
             "Answers":
             [
                 {
-                    "Text":"Your forum name must be Middle-Earth related.",
+                    "Text":"Your forum name must be Middle-earth related.",
                     "Correct": false
                 },{
                     "Text":"Your forum name must be your MC ingame name.",
