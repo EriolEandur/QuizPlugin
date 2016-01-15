@@ -41,11 +41,11 @@
     "Questions":
     [
         {
-            "Question Text": "Here the quiz starts",
+            "Question Text": "Do you want to start the quiz now?",
             "Answers":
             [
                 {
-                    "Text":"You want to start now. Open chat with 't' and type in 'yes' or 'no'.",
+                    "Text":"I want to start now. Open chat with 't' and type in 'yes' or 'no'.",
                     "Correct": true
                 }
             ],
