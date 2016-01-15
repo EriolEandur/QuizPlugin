@@ -76,7 +76,7 @@
                     "Text":"You may play music only on appropriate channels on teamspeak.",
                     "Correct": true
                 },{
-                    "Text":"You permission from staff to play music on Teamspeak.",
+                    "Text":"You need permission from staff to play music on Teamspeak.",
                     "Correct": false
                 },{
                     "Text":"You may NOT play music on Teamspeak.",
