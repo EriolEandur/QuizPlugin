@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Eriol_Eandur.npq_plugin.Data;
+package com.mcmiddleearth.newPlayerQuiz.data;
 
-import Eriol_Eandur.npq_plugin.NPQPlugin;
+import com.mcmiddleearth.newPlayerQuiz.NewPlayerQuizPlugin;
+import com.mcmiddleearth.newPlayerQuiz.conversations.QuestionConversationFactory;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Bukkit;
@@ -28,6 +30,11 @@ import org.json.simple.parser.ParseException;
 
 public class PluginData {
     
+    @Getter
+    @Setter
+    private static QuestionConversationFactory questionFactory;
+    
+
     private static Set<QuestionData> questions;
     private static Set<InformationData> informations;
     private static Set<TeleportationData> teleportations;
@@ -39,19 +46,30 @@ public class PluginData {
 
     private static Plugin plugin;
     
-    private static final boolean debug = true;
+    @Setter
+    @Getter
+    private static int welcomeDelay = 30;
+    
+    @Setter
+    private static boolean debug = false;
     
     @Setter
     private static Player logReceiver = null;
    
-    private static final File quizDataDir = NPQPlugin.getPluginInstance().getDataFolder();
+    private static final File quizDataDir = NewPlayerQuizPlugin.getPluginInstance().getDataFolder();
     private static final File quizDataFile = new File(quizDataDir+ File.separator + "QuizData.json");
     
     public static void initPluginData(Plugin pplugin){
         plugin = pplugin;
         questions = new HashSet<>();
         playerInConversation = new HashSet<>();
-        loadFromFile(null);
+        try {
+            loadFromFile(null);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(PluginData.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(PluginData.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public static void addPlayerToConversation(Player player){
@@ -99,7 +117,7 @@ public class PluginData {
         return qBlock-qSize<pBlock && qBlock+qSize>pBlock;
     }
 
-    public static void loadFromFile(String filename){
+    public static void loadFromFile(String filename) throws FileNotFoundException, ParseException{
         File file;
         if(filename == null) {
             file=quizDataFile;
@@ -165,6 +183,9 @@ public class PluginData {
                     Location targetLoc = getLocation(jTeleport,"Target Location");
                     targetLoc.setWorld(targetWorld);
                     teleport.setTargetLocation(targetLoc);
+                    String welcomeMessage = (String) jTeleport.get("Broadcast");
+                    teleport.setWelcomeMessage(welcomeMessage);
+                    log("Welcome: "+welcomeMessage);
                     teleportations.add(teleport);
                     log("Saved target world: "+teleport.getTargetLocation().getWorld().getName());
                 }
@@ -198,8 +219,10 @@ public class PluginData {
             }
         } catch (FileNotFoundException ex) {
             plugin.getLogger().log(Level.SEVERE, null, ex);
+            throw ex;
         } catch (ParseException ex) {
             plugin.getLogger().log(Level.SEVERE, null, ex);
+            throw ex;
         }
     }
     

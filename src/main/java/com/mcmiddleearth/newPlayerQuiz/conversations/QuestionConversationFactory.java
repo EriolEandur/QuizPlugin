@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Eriol_Eandur.npq_plugin.conversations;
+package com.mcmiddleearth.newPlayerQuiz.conversations;
 
-import Eriol_Eandur.npq_plugin.Data.PluginData;
-import Eriol_Eandur.npq_plugin.Data.QuestionData;
+import com.mcmiddleearth.newPlayerQuiz.data.PluginData;
+import com.mcmiddleearth.newPlayerQuiz.data.QuestionData;
 import org.bukkit.ChatColor;
 import org.bukkit.conversations.Conversation;
 import org.bukkit.conversations.ConversationAbandonedEvent;

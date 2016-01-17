@@ -25,7 +25,8 @@
             "Target Location":
                     {
                         "X": -4087, "Y": 40, "Z":-4445
-                    }
+                    },
+		 "Broadcast": "§6[§4Server§6] §2@p §9§ljust joined! Welcome to Middle Earth!"
          }
     ],
     "Questions":
