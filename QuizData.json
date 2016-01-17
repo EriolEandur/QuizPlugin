@@ -135,9 +135,6 @@
             "Answers":
             [
                 {
-                    "Text":"You must always use English.",
-                    "Correct": false
-                },{
                     "Text":"You must use English in private chat messages.",
                     "Correct": false
                 },{
@@ -243,9 +240,6 @@
             "Answers":
             [
                 {
-                    "Text":"You may only use official MCME Mods.",
-                    "Correct": false
-                },{
                     "Text":"You may use Mods to show an ingame map.",
                     "Correct": true
                 },{
