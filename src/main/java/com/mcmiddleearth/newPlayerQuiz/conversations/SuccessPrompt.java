@@ -3,29 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Eriol_Eandur.npq_plugin.conversations;
+package com.mcmiddleearth.newPlayerQuiz.conversations;
 
-import Eriol_Eandur.npq_plugin.Data.QuestionData;
+import com.mcmiddleearth.newPlayerQuiz.data.QuestionData;
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.MessagePrompt;
 import org.bukkit.conversations.Prompt;
 
-public class QuestionPrompt extends MessagePrompt{
-
+public class SuccessPrompt extends MessagePrompt{
+ 
     @Override
     protected Prompt getNextPrompt(ConversationContext cc) {
-        if(QuestionConversationFactory.getQuestionData(cc).getAnswerTexts().size()>0){
-            cc.setSessionData("Stat", QuestionConversationFactory.CS_ANSWER);
-            return new AnswerPrompt();
-        }
         return Prompt.END_OF_CONVERSATION;
     }
 
     @Override
     public String getPromptText(ConversationContext cc) {
         QuestionData data = QuestionConversationFactory.getQuestionData(cc);
-        return data.getQuestionText();
+        return data.getSuccessText();
     }
-
 
 }

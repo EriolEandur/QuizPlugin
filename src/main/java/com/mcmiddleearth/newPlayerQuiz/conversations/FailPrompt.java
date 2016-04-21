@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Eriol_Eandur.npq_plugin.conversations;
+package com.mcmiddleearth.newPlayerQuiz.conversations;
 
-import Eriol_Eandur.npq_plugin.Data.QuestionData;
+import com.mcmiddleearth.newPlayerQuiz.data.QuestionData;
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.MessagePrompt;
 import org.bukkit.conversations.Prompt;

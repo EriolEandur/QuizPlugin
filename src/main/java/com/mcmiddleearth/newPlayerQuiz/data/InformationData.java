@@ -16,20 +16,18 @@
  *  * You should have received a copy of the GNU General Public License
  *  * along with this program.  If not, see http://www.gnu.org/licenses/.
  */
-package Eriol_Eandur.npq_plugin.Data;
+package com.mcmiddleearth.newPlayerQuiz.data;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.bukkit.Location;
 
 /**
  *
  * @author Eriol_Eandur
  */
-public class TeleportationData extends LocationData{
+public class InformationData extends LocationData{
     
     @Getter
     @Setter
-    private Location targetLocation;
-    
+    private String infoText;
 }

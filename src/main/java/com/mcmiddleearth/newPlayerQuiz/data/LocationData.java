@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Eriol_Eandur.npq_plugin.Data;
+package com.mcmiddleearth.newPlayerQuiz.data;
 
-import java.util.ArrayList;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Location;

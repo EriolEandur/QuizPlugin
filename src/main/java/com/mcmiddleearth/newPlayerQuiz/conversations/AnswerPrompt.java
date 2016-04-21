@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Eriol_Eandur.npq_plugin.conversations;
+package com.mcmiddleearth.newPlayerQuiz.conversations;
 
-import Eriol_Eandur.npq_plugin.Data.QuestionData;
+import com.mcmiddleearth.newPlayerQuiz.data.QuestionData;
+import java.util.logging.Logger;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.conversations.BooleanPrompt;
@@ -31,11 +32,13 @@ public class AnswerPrompt extends BooleanPrompt{
         else {
             Player player = (Player) cc.getForWhom();
             if((Boolean) cc.getSessionData("success")){
+Logger.getGlobal().info("Success teleport");
                 cc.setSessionData("Stat", QuestionConversationFactory.CS_SUCCESS);
                 player.teleport(getOrientedLocation(data.getSuccessLocation(),player));
                 return new SuccessPrompt();
             }
             else {
+Logger.getGlobal().info("Fail teleport");
                 cc.setSessionData("Stat", QuestionConversationFactory.CS_FAIL);
                 player.teleport(getOrientedLocation(data.getFailLocation(),player));
                 return new FailPrompt();

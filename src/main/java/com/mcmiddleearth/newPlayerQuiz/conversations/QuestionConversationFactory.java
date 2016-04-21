@@ -3,16 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Eriol_Eandur.npq_plugin.conversations;
+package com.mcmiddleearth.newPlayerQuiz.conversations;
 
-import Eriol_Eandur.npq_plugin.Data.PluginData;
-import Eriol_Eandur.npq_plugin.Data.QuestionData;
+import com.mcmiddleearth.newPlayerQuiz.data.PluginData;
+import com.mcmiddleearth.newPlayerQuiz.data.QuestionData;
+import java.util.logging.Logger;
 import org.bukkit.ChatColor;
 import org.bukkit.conversations.Conversation;
 import org.bukkit.conversations.ConversationAbandonedEvent;
 import org.bukkit.conversations.ConversationAbandonedListener;
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.ConversationFactory;
+import org.bukkit.conversations.InactivityConversationCanceller;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
@@ -29,10 +31,10 @@ public class QuestionConversationFactory implements ConversationAbandonedListene
     public QuestionConversationFactory(Plugin plugin){
         factory = new ConversationFactory(plugin)
                 .withModality(true)
-                //.withEscapeSequence("!cancel")
+                .withEscapeSequence("!cancel")
                 .withPrefix(new NPQConversationPrefix())
                 .withFirstPrompt(new QuestionPrompt())
-                .withTimeout(600)
+                .withTimeout(40)
                 //.thatExcludesNonPlayersWithMessage("You must be a player to send this command")
                 .addConversationAbandonedListener(this);
         
@@ -50,8 +52,11 @@ public class QuestionConversationFactory implements ConversationAbandonedListene
     
     @Override
     public void conversationAbandoned(ConversationAbandonedEvent abandonedEvent) {
-        if (!abandonedEvent.gracefulExit()) {
-            abandonedEvent.getContext().getForWhom().sendRawMessage(ChatColor.AQUA + "Question cancelled, please try again.");
+Logger.getGlobal().info("abandonded");
+        if (!(abandonedEvent.getCanceller() instanceof InactivityConversationCanceller)) {
+            abandonedEvent.getContext().getForWhom().sendRawMessage(ChatColor.AQUA + "Question cancelled, please step on the question marker again.");
+        } else {
+            abandonedEvent.getContext().getForWhom().sendRawMessage(ChatColor.AQUA + "Question timed out, please step on the question marker again.");
         }
         PluginData.removePlayerFromConversation((Player) abandonedEvent.getContext().getForWhom());
     }
