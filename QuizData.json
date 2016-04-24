@@ -12,7 +12,7 @@
                     }
         },
         {
-            "Information Text": "Please help MCME beeing a friendly place. You may now enter Middle-earth, just follow the path across the water.",
+            "Information Text": "Please help MCME being a friendly place. You may now enter Middle-earth, just follow the path across the water.",
             "X Size": 1,
             "Z Size": 1,
             "Location":
@@ -35,7 +35,7 @@
                     {
                         "X": -4088, "Y": 40, "Z":-4445
                     },
-            "Broadcast": "§6[§4Server§6] §2@p §9§ljust joined! Welcome to Middle Earth!"
+            "Broadcast": "§6[§4Server§6] §a@p §9§ljust joined! Welcome to Middle Earth!"
          }
     ],
     "Questions":
@@ -76,7 +76,7 @@
                     "Text":"You may play music only on appropriate channels on teamspeak.",
                     "Correct": true
                 },{
-                    "Text":"You need permission from staff to play music on Teamspeak.",
+                    "Text":"You may play music upon approval by all players in the channel.",
                     "Correct": false
                 }
             ],
@@ -104,7 +104,7 @@
                     "Text":"You may post links to screenshots of builds you made yourself on a private map.",
                     "Correct": true
                 },{
-                    "Text":"You may post links you made on other servers.",
+                    "Text":"You may advertise other servers by posting screenshots you took there.",
                     "Correct": false
                 },{
                     "Text":"You may tell in chat about a cool other server you found.",
@@ -142,7 +142,7 @@
                     "Correct": false
                 }
             ],
-            "Success Text": "You know the rule, go ahead. Checkpoint saved.",
+            "Success Text": "You know the rule, go ahead. §l$2Checkpoint saved.",
             "Fail Text": "Well, that was wrong, try again.",
             "X Size": 1,
             "Z Size": 1,
@@ -216,7 +216,7 @@
                     "Correct": true
                 }
             ],
-            "Success Text": "You know the rule, go ahead. Only two questions left.",
+            "Success Text": "You know the rule, go ahead. $l$2Only two questions left.",
             "Fail Text": "Well, that was wrong, try again.",
             "X Size": 1,
             "Z Size": 1,
@@ -250,7 +250,7 @@
                     "Correct": true
                 }
             ],
-            "Success Text": "You know the rule, go ahead. Only one question left.",
+            "Success Text": "You know the rule, go ahead. §l§2Only one question left.",
             "Fail Text": "Well, that was wrong, try again.",
             "X Size": 1,
             "Z Size": 1,
@@ -281,7 +281,7 @@
                     "Correct": false
                 }
             ],
-            "Success Text": "Congrats, you answered all questions correctly. Follow the footprints to enter Middle-earth.",
+            "Success Text": "§l§2Congrats, you answered all questions correctly. §a§rFollow the footprints to enter Middle-earth.",
             "Fail Text": "Well, that was wrong, try again.",
             "X Size": 1,
             "Z Size": 1,
