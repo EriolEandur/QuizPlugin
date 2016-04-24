@@ -175,9 +175,6 @@
                     "Text":"You may ask for a job in chat.",
                     "Correct": true
                 },{
-                    "Text":"If a question of yours is not answered, try again by asking until you get an answer.",
-                    "Correct": false
-                },{
                     "Text":"You may post links to videos showing high level of violence.",
                     "Correct": false
                 }
@@ -209,7 +206,7 @@
                     "Text":"Building FREELY on the plotworld is allowed.",
                     "Correct": false
                 },{
-                    "Text":"Building in Plotbuilds is allowed.",
+                    "Text":"Building in plotbuilds is allowed.",
                     "Correct": true
                 },{
                     "Text":"Building during jobs is allowed.",
