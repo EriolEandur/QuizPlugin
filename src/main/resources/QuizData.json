@@ -1,23 +1,23 @@
 {
-    "World": "newplayerworld",
+    "World": "plotworld",
     "Informations": 
     [
         {
-            "Information Text": "Welcome to MCME. Before you can enter Middle-earth you have to do a quiz about the rules. You will find the rules at http://www.mcmiddleearth.com/pages/new-player-guide/. When a question is presented in chat type 't' to open game chat and type in the answer.",
+            "Information Text": "Welcome to MCME. Before you can enter Middle-earth you have to do a quiz about the rules. You will find the rules at http://www.mcmiddleearth.com/pages/new-player-guide/. When a question is presented in chat type 't' to open game chat and type in the answer. Please switch on server textures or manually use our resource pack Gondor.",
             "X Size": 1,
             "Z Size": 1,
             "Location":
                     {
-                        "X": -1352, "Y": 41, "Z":1148
+                        "X": -1347, "Y": 40, "Z":1141
                     }
         },
         {
-            "Information Text": "Please help MCME beeing a friendly place. You may now enter Middle-earth, just follow the path across the water.",
+            "Information Text": "Please help MCME be a friendly place. You may now enter Middle-earth, just follow the path across the water.",
             "X Size": 1,
             "Z Size": 1,
             "Location":
                     {
-                        "X": -1345, "Y": 32, "Z":1327
+                        "X": -1354, "Y": 32, "Z":1327
                     }
         }
     ],
@@ -35,7 +35,7 @@
                     {
                         "X": -4088, "Y": 40, "Z":-4445
                     },
-            "Broadcast": "§6[§4Server§6] §2@p §9§ljust joined! Welcome to Middle Earth!"
+            "Broadcast": "§6[§4Server§6] §a@p §9§ljust joined! Welcome to Middle Earth!"
          }
     ],
     "Questions":
@@ -76,7 +76,7 @@
                     "Text":"You may play music only on appropriate channels on teamspeak.",
                     "Correct": true
                 },{
-                    "Text":"You need permission from staff to play music on Teamspeak.",
+                    "Text":"You may play music upon approval by all players in the channel.",
                     "Correct": false
                 }
             ],
@@ -104,7 +104,7 @@
                     "Text":"You may post links to screenshots of builds you made yourself on a private map.",
                     "Correct": true
                 },{
-                    "Text":"You may post links you made on other servers.",
+                    "Text":"You may advertise other servers by posting screenshots you took there.",
                     "Correct": false
                 },{
                     "Text":"You may tell in chat about a cool other server you found.",
@@ -142,7 +142,7 @@
                     "Correct": false
                 }
             ],
-            "Success Text": "You know the rule, go ahead. Checkpoint saved.",
+            "Success Text": "You know the rule, go ahead. §l$2Checkpoint saved.",
             "Fail Text": "Well, that was wrong, try again.",
             "X Size": 1,
             "Z Size": 1,
@@ -175,9 +175,6 @@
                     "Text":"You may ask for a job in chat.",
                     "Correct": true
                 },{
-                    "Text":"If a question of yours is not answered, try again by asking until you get an answer.",
-                    "Correct": false
-                },{
                     "Text":"You may post links to videos showing high level of violence.",
                     "Correct": false
                 }
@@ -192,7 +189,7 @@
                     },
             "Success Location":
                     {
-                        "X": -1344, "Y": 47, "Z":1215
+                        "X": -1344, "Y": 47, "Z":1216
                     },
             "Fail Location":
                     {
@@ -209,14 +206,14 @@
                     "Text":"Building FREELY on the plotworld is allowed.",
                     "Correct": false
                 },{
-                    "Text":"Building in Plotbuilds is allowed.",
+                    "Text":"Building in plotbuilds is allowed.",
                     "Correct": true
                 },{
                     "Text":"Building during jobs is allowed.",
                     "Correct": true
                 }
             ],
-            "Success Text": "You know the rule, go ahead. Only two questions left.",
+            "Success Text": "You know the rule, go ahead. $l$2Only two questions left.",
             "Fail Text": "Well, that was wrong, try again.",
             "X Size": 1,
             "Z Size": 1,
@@ -250,7 +247,7 @@
                     "Correct": true
                 }
             ],
-            "Success Text": "You know the rule, go ahead. Only one question left.",
+            "Success Text": "You know the rule, go ahead. §l§2Only one question left.",
             "Fail Text": "Well, that was wrong, try again.",
             "X Size": 1,
             "Z Size": 1,
@@ -260,7 +257,7 @@
                     },
             "Success Location":
                     {
-                        "X": -1339, "Y": 48, "Z":1244
+                        "X": -1339, "Y": 48, "Z":1245
                     },
             "Fail Location":
                     {
@@ -279,12 +276,9 @@
                 },{
                     "Text":"Your forum name must be your real name.",
                     "Correct": false
-                },{
-                    "Text":"Choose it freely.",
-                    "Correct": false
                 }
             ],
-            "Success Text": "Congrats, you answered all questions correctly. Follow the footprints to enter Middle-earth.",
+            "Success Text": "§l§2Congrats, you answered all questions correctly. §a§rFollow the footprints to enter Middle-earth.",
             "Fail Text": "Well, that was wrong, try again.",
             "X Size": 1,
             "Z Size": 1,
