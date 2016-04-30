@@ -77,7 +77,7 @@
                     "Correct": true
                 },{
                     "Text":"You may play music upon approval by all players in the channel.",
-                    "Correct": false
+                    "Correct": true
                 }
             ],
             "Success Text": "You know the rule, go ahead.",
@@ -163,7 +163,7 @@
             "Answers":
             [
                 {
-                    "Text":"You may complain about the behaviour of an other player.",
+                    "Text":"You may complain about the behaviour of another player.",
                     "Correct": true
                 },{
                     "Text":"You may complain about a new law in your country.",
