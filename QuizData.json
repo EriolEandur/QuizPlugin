@@ -142,7 +142,7 @@
                     "Correct": false
                 }
             ],
-            "Success Text": "You know the rule, go ahead. §l$2Checkpoint saved.",
+            "Success Text": "You know the rule, go ahead. §l§2Checkpoint saved.",
             "Fail Text": "Well, that was wrong, try again.",
             "X Size": 1,
             "Z Size": 1,
@@ -213,7 +213,7 @@
                     "Correct": true
                 }
             ],
-            "Success Text": "You know the rule, go ahead. $l$2Only two questions left.",
+            "Success Text": "You know the rule, go ahead. §l§2Only two questions left.",
             "Fail Text": "Well, that was wrong, try again.",
             "X Size": 1,
             "Z Size": 1,
