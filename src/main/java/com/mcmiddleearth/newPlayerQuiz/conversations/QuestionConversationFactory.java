@@ -7,7 +7,6 @@ package com.mcmiddleearth.newPlayerQuiz.conversations;
 
 import com.mcmiddleearth.newPlayerQuiz.data.PluginData;
 import com.mcmiddleearth.newPlayerQuiz.data.QuestionData;
-import java.util.logging.Logger;
 import org.bukkit.ChatColor;
 import org.bukkit.conversations.Conversation;
 import org.bukkit.conversations.ConversationAbandonedEvent;
@@ -52,11 +51,12 @@ public class QuestionConversationFactory implements ConversationAbandonedListene
     
     @Override
     public void conversationAbandoned(ConversationAbandonedEvent abandonedEvent) {
-Logger.getGlobal().info("abandonded");
-        if (!(abandonedEvent.getCanceller() instanceof InactivityConversationCanceller)) {
-            abandonedEvent.getContext().getForWhom().sendRawMessage(ChatColor.AQUA + "Question cancelled, please step on the question marker again.");
-        } else {
-            abandonedEvent.getContext().getForWhom().sendRawMessage(ChatColor.AQUA + "Question timed out, please step on the question marker again.");
+        if(!abandonedEvent.gracefulExit()) {
+            if (!(abandonedEvent.getCanceller() instanceof InactivityConversationCanceller)) {
+                abandonedEvent.getContext().getForWhom().sendRawMessage(ChatColor.AQUA + "Question cancelled, please step on the question marker again.");
+            } else {
+                abandonedEvent.getContext().getForWhom().sendRawMessage(ChatColor.AQUA + "Question timed out, please step on the question marker again.");
+            }
         }
         PluginData.removePlayerFromConversation((Player) abandonedEvent.getContext().getForWhom());
     }
