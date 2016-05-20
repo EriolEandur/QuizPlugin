@@ -35,7 +35,7 @@
                     {
                         "X": -4088, "Y": 40, "Z":-4445
                     },
-            "Broadcast": "§6[§4Server§6] §a@p §9§ljust joined! Welcome to Middle Earth!"
+            "Broadcast": "Â§6[Â§4ServerÂ§6] Â§a@p Â§9Â§ljust joined! Welcome to Middle Earth!"
          }
     ],
     "Questions":
@@ -81,7 +81,7 @@
                 }
             ],
             "Success Text": "You know the rule, go ahead.",
-            "Fail Text": "Well, that was wrong, try again.",
+            "Fail Text": "Well, at least one of your answers was wrong, try again. You can ask for help at http://www.mcmiddleearth.com/forums/get-help.25/",
             "X Size": 1,
             "Z Size": 1,
             "Question Location":
@@ -112,7 +112,7 @@
                 }
             ],
             "Success Text": "You know the rule, go ahead.",
-            "Fail Text": "Well, that was wrong, try again.",
+            "Fail Text": "Well, at least one of your answers was wrong, try again. You can ask for help at http://www.mcmiddleearth.com/forums/get-help.25/",
             "X Size": 1,
             "Z Size": 1,
             "Question Location":
@@ -142,8 +142,8 @@
                     "Correct": false
                 }
             ],
-            "Success Text": "You know the rule, go ahead. §l§2Checkpoint saved.",
-            "Fail Text": "Well, that was wrong, try again.",
+            "Success Text": "You know the rule, go ahead. Â§lÂ§2Checkpoint saved.",
+            "Fail Text": "Well, at least one of your answers was wrong, try again. You can ask for help at http://www.mcmiddleearth.com/forums/get-help.25/",
             "X Size": 1,
             "Z Size": 1,
             "Question Location":
@@ -169,9 +169,6 @@
                     "Text":"You may complain about a new law in your country.",
                     "Correct": false
                 },{
-                    "Text":"You may discuss about the behaviour of fundamental christians in your town.",
-                    "Correct": false
-                },{
                     "Text":"You may ask for a job in chat.",
                     "Correct": true
                 },{
@@ -180,7 +177,7 @@
                 }
             ],
             "Success Text": "You know the rule, go ahead.",
-            "Fail Text": "Well, that was wrong, try again.",
+            "Fail Text": "Well, at least one of your answers was wrong, try again. You can ask for help at http://www.mcmiddleearth.com/forums/get-help.25/",
             "X Size": 1,
             "Z Size": 1,
             "Question Location":
@@ -213,8 +210,8 @@
                     "Correct": true
                 }
             ],
-            "Success Text": "You know the rule, go ahead. §l§2Only two questions left.",
-            "Fail Text": "Well, that was wrong, try again.",
+            "Success Text": "You know the rule, go ahead. Â§lÂ§2Only two questions left.",
+            "Fail Text": "Well, at least one of your answers was wrong, try again. You can ask for help at http://www.mcmiddleearth.com/forums/get-help.25/",
             "X Size": 1,
             "Z Size": 1,
             "Question Location":
@@ -247,8 +244,8 @@
                     "Correct": true
                 }
             ],
-            "Success Text": "You know the rule, go ahead. §l§2Only one question left.",
-            "Fail Text": "Well, that was wrong, try again.",
+            "Success Text": "You know the rule, go ahead. Â§lÂ§2Only one question left.",
+            "Fail Text": "Well, at least one of your answers was wrong, try again. You can ask for help at http://www.mcmiddleearth.com/forums/get-help.25/",
             "X Size": 1,
             "Z Size": 1,
             "Question Location":
@@ -278,8 +275,8 @@
                     "Correct": false
                 }
             ],
-            "Success Text": "§l§2Congrats, you answered all questions correctly. §a§rFollow the footprints to enter Middle-earth.",
-            "Fail Text": "Well, that was wrong, try again.",
+            "Success Text": "Â§lÂ§2Congrats, you answered all questions correctly. Â§aÂ§rFollow the footprints to enter Middle-earth.",
+            "Fail Text": "Well, at least one of your answers was wrong, try again. You can ask for help at http://www.mcmiddleearth.com/forums/get-help.25/",
             "X Size": 1,
             "Z Size": 1,
             "Question Location":
