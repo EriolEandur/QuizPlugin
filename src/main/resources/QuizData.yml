@@ -1,0 +1,47 @@
+numberOfTries: 2
+telportPlaces:
+  - location: flat 1000 100 1
+    size: 1 3 1
+    target: world 1000 100 30
+    message: 
+      - Welcome to MCME.
+    broadcast: @p just joined. Welcome to MCME.
+    broadcastDelay: 30
+quizPlaces:
+  - name: first
+    location: flat 1000 100 40
+    size: 1 3 1
+    message:
+      - §2§bWelcome§3 to MCME!!
+      - §2 [Click="npq answer first 1"]Click [Hover="TESTA"]here[/Hover] to continue[/Click]
+      - §2 [Click="npq answer first 2"]Click here to [Hover="TEST"]go [/Click]back[/Hover]
+    correct: 1
+    success:
+        message: 
+          - You did it.
+        target: flat 1000 100 40
+    retry:
+        message: 
+          - Well, that was wrong. You have a second chance this time, choose it wisely.
+        target: flat 39 30 32
+    fail:
+        message: 
+          - Well, that was wrong. You have to start again from the begining.
+        target: flat 0 30 102
+  - name: second
+    correct: 2
+    location: 1000 130 40
+    size: 1 3 1
+    success:
+        message: You did it again.
+        target: flat 1000 100 40
+    retry:
+        message: Well, that was wrong. You have a second chance this time, choose it wisely.
+        target: flat 39 30 32
+    fail:
+        message: Well, that was wrong. You have to start again from the last checkpoint.
+        target: flat 0 30 102
+    message:
+      - §2§bWelcome§3 to MCME!!
+      - §2 [Click="npq answer first 2"]Click [Hover="TIEF"]here[/Hover] to continue[/Click]
+      - §2 [Click="npq answer first 1"]Click here to [Hover="TUUF"]go [/Click]back[/Hover]

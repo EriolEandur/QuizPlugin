@@ -1,0 +1,238 @@
+numberOfSecondChances: 2
+numberOfSteps: 8
+worlds:
+  - newplayerworld
+quizPlaces:
+  - name: start
+    location: newplayerworld -1347 40 1141
+    size: 1 3 1
+    message:
+      - \n                            §6§nWelcome to MCME!\n\n 
+      - Before you can enter Middle-earth you have to do a quiz which introduces you to the community of MCME. You will find 
+      - the community rules at our [Click="http://www.mcmiddleearth.com/pages/new-player-guide/"][Hover="§aClick to open"]
+      - §bNew Player Guide[/Hover][/Click].
+      - \n Please switch on server textures or manually use our 
+      - resource pack [Click="http://www.mcmiddleearth.com/content/Gondor.zip"][Hover="§aClick to download."]§b'Gondor'[/Hover][/Click].
+      - \n\n Psst, click at [Hover="§aYou got it :)"]§bblue text[/Hover] or point at it with your mouse cursor for more information.
+  - name: practice
+    correct: start
+    location: newplayerworld -1352 41 1148
+    size: 1 3 1
+    message:
+      - §6Do you want to start the quiz now?
+      - \n   [Click="/npq answer practice start"]§b[YES][/Click] << Click here to continue.
+      - \n   [Click="/npq answer practice later"]§b[NO][/Click]  << Click here to start later.
+    success:
+        message: 
+          - Follow the footprints and torches.
+        target: newplayerworld -1353 42 1150
+        nextStep: 1
+    retry:
+        message: 
+          - Come back when you are ready to start the quiz. You'll find help in 
+          - our [Click="http://www.mcmiddleearth.com/pages/new-player-guide/"]§b>>New Player Guide<<[/Click].
+          - Also you may ask for help at the [Click="http://www.mcmiddleearth.com/forums/get-help.25/"][Hover="Please 
+          - read the New Player Guide carefully before you ask for help. People may be a bit grumpy 
+          - if you ask about something which is already explained there."]§bforum[/Hover][/Click].
+        target: newplayerworld -1349 40 1142 0 0
+        keepOrientation: false
+        resetChances: true
+  - name: first
+    correct: C
+    location: newplayerworld -1360 44 1165
+    size: 1 3 1
+    message:
+      - \n[Hover="Click at the right answer."]§6What is MCME?[/Hover]
+      - \n   [Click="/npq answer first A"]§b[A]§e A Middle-earth PvP server[/Click].
+      - \n   [Click="/npq answer first B"]§b[B]§e A Middle-earth role play server[/Click].
+      - \n   [Click="/npq answer first C"]§b[C]§e A Middle-earth build server.[/Click]
+    success:
+        message: 
+          - \n §2§lCorrect§r§a. Our goal is to build all of Middle-earth. But we have a 
+          - §r[Hover="We copied famous places of Middle-earth to our PvP server. You can play several PvP game modes there.
+          - But it's not open all the time. If you want to play PvP ask a §2Designer§e or §6Enforcer§e to open it 
+          - and start a pvp game."]§bPvP server[/Hover] too.
+        target: newplayerworld -1361 44 1167
+        nextStep: 2
+    retry:
+        message: 
+          - \n No, that is not the main purpose of MCME. 
+          - You have a [Hover="You may use a second chance two times in the whole quiz. The third wrong answer will teleport you back to the start of the quiz."]§bsecond chance[/Hover] this time use it wisely.
+        target: newplayerworld -1358 43 1154 0 0
+        keepOrientation: false
+    fail:
+        message: 
+          - \n No, that is not the main purpose of MCME. You'll find help in 
+          - our [Click="http://www.mcmiddleearth.com/pages/new-player-guide/"]§b>>New Player Guide<<[/Click].
+          - Also you may ask for help at the [Click="http://www.mcmiddleearth.com/forums/get-help.25/"][Hover="Please 
+          - read the New Player Guide carefully before you ask for help. People may be a bit grumpy 
+          - if you ask about something which is already explained there."]\n §bforum[/Hover][/Click].
+        target: newplayerworld -1349 40 1142 0 0
+        keepOrientation: false
+  - name: second
+    correct: proceed
+    location: newplayerworld -1361 50 1182
+    size: 1 3 1
+    message:
+      - §r[Hover="Click to get redirected to the websites!"]§6Minecraft Middle-earth also has:[/Hover]
+      - \n   §6->§e [Click="http://www.mcmiddleearth.com"][Hover="§aOur main communication tool!"]§bMCME Forums[/Hover][/Click]
+      - \n   §6->§e [Click="http://www.mcmiddleearth.com/resources/teamspeak-guide.44/"][Hover="§aWhere we meet for jobs and hanging §aout!"]§bTeamspeak[/Hover][/Click]
+      - \n   §6->§e [Hover="§awhere we share awesome things!"][Click="https://www.youtube.com/user/MiddleEarthMinecraft"]§bYoutube[/Click], [Click="https://www.facebook.com/mcmeproject/"]§bFacebook[/Click], [Click="https://twitter.com/MCMiddleEarth"]§bTwitter[/Click][/Hover]
+      - \n [Click="/npq answer second proceed"]§e>> §bClick to proceed! §e<<[/Click].
+    success:
+        message: 
+          - \n 
+        target: newplayerworld -1361 51 1184
+        nextStep: 3
+  - name: third
+    correct: A
+    location: newplayerworld -1354 50 1205
+    size: 1 3 1
+    message:
+      - §6How should you choose your username on the MCME Forums?
+      - \n   [Click="/npq answer third A"]§b[A] §eYour forum name must be your Minecraft ingame name.[/Click]
+      - \n   [Click="/npq answer third B"]§b[B] §eYour forum name must be your real name.[/Click]
+      - \n   [Click="/npq answer third C"]§b[C] §eChoose it freely.[/Click]
+    success:
+        message: 
+          - \n §2§lCorrect§r§a. If your forum name was different from your ingame name other players would be confused.
+          - \n\n §2Checkpoint saved.
+        target: newplayerworld -1352 49 1206
+        nextStep: 4
+    retry:
+        message: 
+          - \n No, that is wrong. 
+          - You have a [Hover="You may use a second chance two times in the whole quiz. The third wrong answer will teleport you back to the start of the quiz."]§bsecond chance[/Hover] this time use it wisely.
+        target: newplayerworld -1358 52 1196 0 0
+        keepOrientation: false
+    fail:
+        message: 
+          - \n No, that is wrong. You'll find help in 
+          - our [Click="http://www.mcmiddleearth.com/pages/new-player-guide/"]§b>>New Player Guide<<[/Click].
+          - Also you may ask for help at the [Click="http://www.mcmiddleearth.com/forums/get-help.25/"][Hover="Please 
+          - read the New Player Guide carefully before you ask for help. People may be a bit grumpy 
+          - if you ask about something which is already explained there."]\n §bforum[/Hover][/Click].
+        target: newplayerworld -1349 40 1142 0 0
+        keepOrientation: false
+  - name: fourth
+    correct: proceed
+    location: newplayerworld -1346 48 1215
+    size: 1 3 1
+    message:
+      - \n §6When you first join MCME your rank is called Adventurer. 
+      - \n §6Here’s what you can do as Adventurer!
+      - \n   §6->§e Explore the Middle-earth map, by [Hover="§aPssst, also you can fly ;)"]§bfoot[/Hover] or by warping \n       around.
+      - \n   §6->§e Ask for a tour lead by a Guide around the server.
+      - \n   §6->§e Help building Middle-earth through a [Click="http://www.mcmiddleearth.com/threads/scheduled-jobs-and-open-plotbuilds-updated-for-sat-june-4th.2741/"][Hover="Click here for information about jobs and plotbuilds."]§bjob or plotbuild[/Hover][/Click]. 
+      - \n       Ask a [Hover="§2Designers §eplan projects and organise building. More challenging builds are usually given to experienced builders with §5Artist§e rank.
+      - But if a §2Designer §ehas something not too difficult to build he will probably start a job for §7Adventurers§e. You can see active jobs using '§6/job check§e'. If there is a job you may join the job with '§6/job join <jobname>§e'"]§bDesigner[/Hover] for that.
+      - \n [Click="/npq answer fourth proceed"]§e >> §bClick to proceed! §e<<[/Click].
+    success:
+        message: 
+          - \n
+        target: newplayerworld -1344 47 1216
+        nextStep: 5
+  - name: fifth
+    correct: A
+    location: newplayerworld -1331 45 1227
+    size: 1 3 1
+    message:
+      - §6What is forbidden by the rules of MCME?
+      - \n    [Click="/npq answer fifth A"]§b[A]§e Downloading of any part of the map.[/Click]
+      - \n    [Click="/npq answer fifth B"]§b[B]§e Using mods which show an ingame map.[/Click]
+      - \n    [Click="/npq answer fifth C"]§b[C]§e Record videos on MCME server and post on YouTube\n         with credit to MCME.[/Click]
+    success:
+        message: 
+          - \n §2§lCorrect§r§a. Also it is forbidden to use [Hover="All mods which enables you to move faster than normal."]§bspeed mods[/Hover] as they cause server lag. 
+          - But [Hover="All mods that show an ingame map."]§bmap mods[/Hover] as well as [Hover="Mods like optifine and shaders."]§bquality enhancing mods[/Hover] are allowed.
+        target: newplayerworld -1331 45 1229
+        nextStep: 6
+    retry:
+        message: 
+          - \n No, that is allowed at MCME. 
+          - You have a [Hover="You may use a second chance two times in the whole quiz. The third wrong answer will teleport you back to the last saved checkpoint."]§bsecond chance[/Hover] this time use it wisely.
+        target: newplayerworld -1339 47 1222 -60 0
+        keepOrientation: false
+    fail:
+        message: 
+          - \n No, that is allowed at MCME. You'll find help in our
+          - \n [Click="http://www.mcmiddleearth.com/pages/new-player-guide/"]§b>>New Player Guide<<[/Click].
+          - Also you may ask for help at the [Click="http://www.mcmiddleearth.com/forums/get-help.25/"][Hover="Please 
+          - read the New Player Guide carefully before you ask for help. People may be a bit grumpy 
+          - if you ask about something which is already explained there."]\n §bforum[/Hover][/Click].
+        target: newplayerworld -1352 49 1206 -45 0
+        keepOrientation: false
+        nextStep: 4
+  - name: sixth
+    correct: B
+    location: newplayerworld -1337 48 1244
+    size: 1 3 1
+    message:
+      - \n §6There are rules on MCME to ensure a secure and friendly §6environment. Which of the following is a social rule on MCME?
+      - \n    [Click="/npq answer sixth A"]§b[A]§e Advertising other servers is allowed[/Click].
+      - \n    [Click="/npq answer sixth B"]§b[B]§e Religious, political discussions and player harassment \n         are prohibited[/Click]. 
+      - \n    [Click="/npq answer sixth C"]§b[C]§e Don’t criticize our buildings[/Click].
+    success:
+        message: 
+          - \n §2§lCorrect§r§a.
+        target: newplayerworld -1339 48 1245
+        nextStep: 7
+    retry:
+        message: 
+          - \n No, that is not a rule on MCME. 
+          - You have a [Hover="You may use a second chance two times in the whole quiz. The third wrong answer will teleport you back to the last saved checkpoint."]§bsecond chance[/Hover] this time use it wisely.
+        target: newplayerworld -1330 48 1237 45 0
+        keepOrientation: false
+    fail:
+        message: 
+          - \n No, that is not a rule on MCME. You'll find help in our
+          - \n [Click="http://www.mcmiddleearth.com/pages/new-player-guide/"]§b>>New Player Guide<<[/Click].
+          - Also you may ask for help at the [Click="http://www.mcmiddleearth.com/forums/get-help.25/"][Hover="Please 
+          - read the New Player Guide carefully before you ask for help. People may be a bit grumpy 
+          - if you ask about something which is already explained there."]\n §bforum[/Hover][/Click].
+        target: newplayerworld -1352 49 1206 -45 0
+        keepOrientation: false
+        nextStep: 4
+  - name: seventh
+    correct: proceed
+    location: newplayerworld -1349 43 1277
+    size: 1 3 1
+    message:
+      - \n §6All players §c§lmust know§6 the following information:\n 
+      - §r  §6->§e English must be used on all [Hover="Ingame you may send private messages to a player using 
+      - \n §e'§6/msg <playername> <message>'. \n \n To reply to last private message use '§6/r <message>'. \n \n These private messages may use any language."]
+      - §bpublic or open[/Hover] communication\n       channels.
+      - \n   §6->§e Do not spam chat repeatedly with the same questions\n       that can be answered by searching the forums.
+      - \n   §6->§e Spreading our resource packs without proper Creative\n       Commons License is not allowed.
+      - \n [Click="/npq answer seventh proceed"]§e >> §bClick to proceed! §e<<[/Click].
+    success:
+        message: 
+          - \n
+        target: newplayerworld -1349 43 1279
+        nextStep: 8
+  - name: info
+    correct: proceed
+    location: newplayerworld -1356 37 1306
+    size: 1 3 1
+    message:
+      - \n §6         You reached the end of the quiz. \n
+      - \n You may now enter Middle-earth, go and explore.  
+      - \n Feel free to ask any questions if you're not sure.\n
+      - \n Please help MCME to be a friendly place.\n
+      - \n [Click="/npq answer info proceed"]§e               >> §bClick to proceed! §e<<[/Click].
+    success:
+        message:
+          - \n Just follow the path across the water. \n\n But be warned with §2Bilbo's§a words:§a "It's a dangerous business, Frodo, going out of your door. You step into the Road, and if you don't keep your feet ... if you let it, 
+          - it might take you to the [Hover="No, §6Erebor§e is not built yet. \n But we will build it for sure ;) \n \n We are focussing on the places from LotR. We started at the §6Shire§e in October 2010 and are roughly following the story line of LotR since then."]§bLonly Mountain[/Hover] or even further..."
+        target: newplayerworld -1356 37 1308
+        nextStep: 8
+teleportPlaces:
+  - location: newplayerworld -1361 32 1331
+    size: 3 3 3
+    target: world -4087 40 -4445
+    message: 
+      - Teleporting to Bagend ...
+    broadcast: §6[§4Broadcast§6] §a_@p_ §9§ljust joined! Welcome to Middle-earth!
+    broadcastDelay: 200
+    welcomeTitle: §6Welcome
+    welcomeSubtitle: §ato Middle-earth

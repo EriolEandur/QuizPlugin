@@ -18,16 +18,37 @@
  */
 package com.mcmiddleearth.newPlayerQuiz.data;
 
+import com.mcmiddleearth.newPlayerQuiz.PluginData;
+import com.mcmiddleearth.pluginutil.message.FancyMessage;
 import lombok.Getter;
 import lombok.Setter;
+import org.bukkit.Location;
+import org.bukkit.configuration.ConfigurationSection;
 
 /**
  *
  * @author Eriol_Eandur
  */
-public class InformationData extends LocationData{
+public class TeleportData extends LocationData{
     
     @Getter
+    private Location targetLocation;
+    
     @Setter
-    private String infoText;
+    @Getter
+    private boolean keepOrientation;
+    
+    @Getter
+    private FancyMessage message;
+    
+    public void setTargetLocation(String data) {
+        targetLocation = locationFromString(data);
+    }
+        
+    public void setMessage(ConfigurationSection data) {
+        message = messageFromConfig(data, PluginData.getTeleportColor());
+    }
+
+
+    
 }

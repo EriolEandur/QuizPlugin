@@ -1,8 +1,6 @@
 /*
- * Here comes the text of your license
- * Each line should be prefixed with  * 
  * NPQplugin is a  player quiz management Bukkit plugin
- *  Copyright (C) 2015
+ *  Copyright (C) 2016 MCME
  * 
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -18,19 +16,17 @@
  */
 package com.mcmiddleearth.newPlayerQuiz.listener;
 
-import com.mcmiddleearth.newPlayerQuiz.NewPlayerQuizPlugin;
-import com.mcmiddleearth.newPlayerQuiz.data.InformationData;
-import com.mcmiddleearth.newPlayerQuiz.data.PluginData;
+import com.mcmiddleearth.newPlayerQuiz.PluginData;
 import com.mcmiddleearth.newPlayerQuiz.data.QuestionData;
-import com.mcmiddleearth.newPlayerQuiz.data.TeleportationData;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
+import com.mcmiddleearth.newPlayerQuiz.data.TeleportData;
+import com.mcmiddleearth.pluginutil.message.FancyMessage;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
-import org.bukkit.scheduler.BukkitRunnable;
 
 /**
  *
@@ -38,43 +34,56 @@ import org.bukkit.scheduler.BukkitRunnable;
  */
 public class PlayerListener implements Listener{
 
-        @EventHandler
+    @EventHandler
     public void onPlayerMoves(PlayerMoveEvent event){
+        if(movedWithinBlock(event.getFrom(),event.getTo())) {
+            return;
+        }
+        if(!PluginData.isQuizWorld(event.getTo().getWorld())) {
+            if(PluginData.getQuizScoreboard(event.getPlayer())!=null) {
+                PluginData.removeQuizScoreboard(event.getPlayer());
+            }
+            return;
+        }
+        Player player = event.getPlayer();
         QuestionData question = PluginData.questionFor(event.getTo());
         if(question!=null) {
-            Player player = event.getPlayer();
-            if(!PluginData.isPlayerInConversation(player)){
-                PluginData.addPlayerToConversation(player);
-                PluginData.getQuestionFactory().startConversation(question, player);
+            if(question.isInside(event.getFrom())) {
+                return;
             }
+            PluginData.clearChat(player);
+            question.getQuizMessage().send(player);
         }
-        InformationData infoTo = PluginData.infoFor(event.getTo());
-        if(infoTo!= null) {
-            if(infoTo!=PluginData.infoFor(event.getFrom())) {
-                event.getPlayer().sendMessage(ChatColor.GOLD+"[New Player Quiz] "+ChatColor.YELLOW
-                                             +infoTo.getInfoText());
-            }
-        }
-        TeleportationData teleport = PluginData.teleportFor(event.getTo());
+        TeleportData teleport = PluginData.teleportFor(event.getTo());
         if(teleport!= null) {
+            if(teleport.isInside(event.getFrom())) {
+                return;
+            }
             if(teleport!=PluginData.teleportFor(event.getFrom())) {
-                event.getPlayer().teleport(teleport.getTargetLocation(), 
+                Location target = teleport.getTargetLocation();
+                event.getPlayer().teleport(PluginData.calculateTargetLocation(target, 
+                                                                           player.getLocation(), 
+                                                                           teleport.isKeepOrientation()),
                                            PlayerTeleportEvent.TeleportCause.PLUGIN);
                 PluginData.log(teleport.getTargetLocation().getWorld().getName());
-                final String newPlayerName = event.getPlayer().getName();
-                final String welcome = teleport.getWelcomeMessage();
-                if(welcome != null) {
-                    BukkitRunnable welcomeTask = new BukkitRunnable() {
-                        @Override
-                        public void run() {
-                            int playerIndex = welcome.indexOf("@p");
-                            String send = welcome.substring(0, playerIndex)+newPlayerName+welcome.substring(playerIndex+2);
-                            Bukkit.broadcastMessage(send);
-                    }};
-                    welcomeTask.runTaskLater(NewPlayerQuizPlugin.getPluginInstance(), PluginData.getWelcomeDelay());
+                FancyMessage message = teleport.getMessage();
+                if(message!=null) {
+                    message.send(player);
                 }
+                teleport.sendBroadcastMessageAndTitle(player);
             }
         }
     }
 
+    @EventHandler
+    public void playerQuit(PlayerQuitEvent event) {
+        PluginData.removeQuizScoreboard(event.getPlayer());
+    }
+    
+    private boolean movedWithinBlock(Location from, Location to) {
+        return from.getWorld().equals(to.getWorld())
+                && from.getBlockX() == to.getBlockX()
+                && from.getBlockY() == to.getBlockY()
+                && from.getBlockZ() == to.getBlockZ();
+    }
 }

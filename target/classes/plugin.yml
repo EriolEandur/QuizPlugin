@@ -1,20 +1,17 @@
-name: NPQplugin
-main: Eriol_Eandur.npq_plugin.NPQPlugin
-version: 0.1
+name: NewPlayerQuiz
+main: com.mcmiddleearth.newPlayerQuiz.NewPlayerQuizPlugin
+version: 1.1
 description: New Player Quiz Plugin
 load: POSTWORLD
-depend: [Multiverse-Core]
+depend: [Multiverse-Core,PluginUtils]
+api-version: 1.13
+
 commands:
-    reloadnpq:
-        description: reloads New player Quiz
-        usage: TBA
-    debug:
-        description: shows debug informations
-        usage: /debug /debug world or /debug here
+    npq:
+        description: manages new player quiz
+        usage: /npq load|debug|delay
 permissions:
-    npquiz.staff:
-        default: op
-        children:
-            npquiz.user: true
-    npquiz.user:
+    npq.user:
         default: true
+    npq.admin: 
+        default: op

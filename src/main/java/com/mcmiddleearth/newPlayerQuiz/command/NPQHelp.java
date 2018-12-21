@@ -2,7 +2,7 @@
  * Here comes the text of your license
  * Each line should be prefixed with  * 
  * NPQplugin is a  player quiz management Bukkit plugin
- *  Copyright (C) 2015
+ *  Copyright (C) 2015 MCME
  * 
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -16,23 +16,31 @@
  *  * You should have received a copy of the GNU General Public License
  *  * along with this program.  If not, see http://www.gnu.org/licenses/.
  */
-package com.mcmiddleearth.newPlayerQuiz.data;
+package com.mcmiddleearth.newPlayerQuiz.command;
 
-import lombok.Getter;
-import lombok.Setter;
-import org.bukkit.Location;
+import com.mcmiddleearth.newPlayerQuiz.NewPlayerQuizPlugin;
+import com.mcmiddleearth.newPlayerQuiz.PluginData;
+import org.bukkit.command.CommandSender;
 
 /**
  *
  * @author Eriol_Eandur
  */
-public class TeleportationData extends LocationData{
-    
-    @Getter
-    @Setter
-    private Location targetLocation;
-    
-    @Getter
-    @Setter
-    private String welcomeMessage;
+public class NPQHelp  extends AbstractCommand {
+
+    public NPQHelp(String permissionNodes) {
+        super(0,false,permissionNodes);
+    }
+
+    @Override
+    protected void execute(CommandSender cs, String... args) {
+        try{
+            NewPlayerQuizPlugin.getPluginInstance().reloadConfig();
+            PluginData.load();
+            PluginData.getMessageUtil().sendInfoMessage(cs, "Quiz data loaded.");
+        }
+        catch(Exception e) {
+            PluginData.getMessageUtil().sendErrorMessage(cs, "There was an error while loading quizData");
+        }
+    }
 }

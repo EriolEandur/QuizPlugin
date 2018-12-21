@@ -5,11 +5,8 @@
  */
 package com.mcmiddleearth.newPlayerQuiz.command;
 
-import com.mcmiddleearth.newPlayerQuiz.data.PluginData;
-import com.mcmiddleearth.newPlayerQuiz.utils.MessageUtil;
+import com.mcmiddleearth.newPlayerQuiz.PluginData;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.ConsoleCommandSender;
-import org.bukkit.entity.Player;
 
 /**
  *
@@ -24,16 +21,16 @@ class NPQDelay extends AbstractCommand {
     @Override
     protected void execute(CommandSender cs, String... args) {
         try {
-            PluginData.setWelcomeDelay(Integer.parseInt(args[0]));
+            PluginData.setDefaultBroadcastDelay(Integer.parseInt(args[0]));
             sendDelayMessage(cs);
         }
         catch(NumberFormatException e) {
-            MessageUtil.sendErrorMessage(cs,"Invalid number format, try: /npq delay #welcomeDelay");
+            PluginData.getMessageUtil().sendErrorMessage(cs,"Invalid number format, try: /npq delay #welcomeDelay");
         }
     }
 
     private void sendDelayMessage(CommandSender cs) {
-        MessageUtil.sendInfoMessage(cs,"Delay for welcome broadcast set.");
+        PluginData.getMessageUtil().sendInfoMessage(cs,"Delay for welcome broadcast set.");
     }
 
 }
