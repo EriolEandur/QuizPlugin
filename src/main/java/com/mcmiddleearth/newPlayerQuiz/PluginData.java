@@ -28,10 +28,12 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -55,7 +57,7 @@ public class PluginData {
     @Getter
     private static final MessageUtil messageUtil = new MessageUtil();
     
-    private static final List<UUID> finishedQuizPlayers = new ArrayList<>();
+    private static final Set<UUID> finishedQuizPlayers = new HashSet<>();
     
     @Getter
     private static final List<World> quizWorlds = new ArrayList<>();
@@ -284,9 +286,11 @@ public class PluginData {
     }
 
     public static void clearChat(Player player) {
+        String message = "";
         for(int i=0; i<numberOfChatLines;i++) {
-            player.sendMessage(" ");
+            message = message + "\n";
         }
+        player.sendMessage(message);
     }
     
     public static void showQuizScoreboard(Player player) {
