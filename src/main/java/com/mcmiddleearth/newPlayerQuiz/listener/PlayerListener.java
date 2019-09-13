@@ -20,10 +20,13 @@ import com.mcmiddleearth.newPlayerQuiz.PluginData;
 import com.mcmiddleearth.newPlayerQuiz.data.QuestionData;
 import com.mcmiddleearth.newPlayerQuiz.data.TeleportData;
 import com.mcmiddleearth.pluginutil.message.FancyMessage;
+import java.util.logging.Logger;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerChangedWorldEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
@@ -35,6 +38,10 @@ import org.bukkit.event.player.PlayerTeleportEvent;
 public class PlayerListener implements Listener{
 
     @EventHandler
+    public void onInteract(PlayerInteractEvent event) {
+    /*}
+    
+    @EventHandler
     public void onPlayerMoves(PlayerMoveEvent event){
         if(movedWithinBlock(event.getFrom(),event.getTo())) {
             return;
@@ -44,22 +51,22 @@ public class PlayerListener implements Listener{
                 PluginData.removeQuizScoreboard(event.getPlayer());
             }
             return;
-        }
+        }*/
         Player player = event.getPlayer();
-        QuestionData question = PluginData.questionFor(event.getTo());
+        QuestionData question = PluginData.questionFor(event.getPlayer().getLocation());
         if(question!=null) {
-            if(question.isInside(event.getFrom())) {
+            /*if(question.isInside(event.getFrom())) {
                 return;
-            }
+            }*/
             PluginData.clearChat(player);
             question.getQuizMessage().send(player);
         }
-        TeleportData teleport = PluginData.teleportFor(event.getTo());
+        TeleportData teleport = PluginData.teleportFor(event.getPlayer().getLocation());
         if(teleport!= null) {
-            if(teleport.isInside(event.getFrom())) {
+            /*if(teleport.isInside(event.getFrom())) {
                 return;
-            }
-            if(teleport!=PluginData.teleportFor(event.getFrom())) {
+            }*/
+            //if(teleport!=PluginData.teleportFor(event.getFrom())) {
                 Location target = teleport.getTargetLocation();
                 event.getPlayer().teleport(PluginData.calculateTargetLocation(target, 
                                                                            player.getLocation(), 
@@ -71,10 +78,19 @@ public class PlayerListener implements Listener{
                     message.send(player);
                 }
                 teleport.sendBroadcastMessageAndTitle(player);
-            }
+            //}
         }
     }
 
+    @EventHandler
+    public void onExitNewPlayerWorld(PlayerChangedWorldEvent event) {
+        if(PluginData.isQuizWorld(event.getFrom())) {
+            if(PluginData.getQuizScoreboard(event.getPlayer())!=null) {
+                PluginData.removeQuizScoreboard(event.getPlayer());
+            }
+        }
+    }
+    
     @EventHandler
     public void playerQuit(PlayerQuitEvent event) {
         PluginData.removeQuizScoreboard(event.getPlayer());

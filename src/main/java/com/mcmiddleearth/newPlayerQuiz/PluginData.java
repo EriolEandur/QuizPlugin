@@ -47,6 +47,7 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.MemoryConfiguration;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
 
 /**
  *
@@ -252,13 +253,19 @@ public class PluginData {
     public static void setFinishedQuiz(Player player) {
         chancesLeft.remove(player.getUniqueId());
         if(!hasFinishedQuiz(player)) {
-            finishedQuizPlayers.add(player.getUniqueId());
-            try(FileWriter fw = new FileWriter(finishedPlayerFile,true);
-                PrintWriter writer = new PrintWriter(fw)) {
-                writer.println(player.getUniqueId());
-            } catch (IOException ex) {
-                Logger.getLogger(PluginData.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            final UUID uuid = player.getUniqueId();
+            finishedQuizPlayers.add(uuid);
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    try(FileWriter fw = new FileWriter(finishedPlayerFile,true);
+                        PrintWriter writer = new PrintWriter(fw)) {
+                        writer.println(uuid);
+                    } catch (IOException ex) {
+                        Logger.getLogger(PluginData.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }.runTaskAsynchronously(NewPlayerQuizPlugin.getPluginInstance());
         }
     }
     
