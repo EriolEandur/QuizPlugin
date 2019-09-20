@@ -129,6 +129,7 @@ public class PluginData {
             data.setSize(teleportPlaceConfig.getString("size",""));
             data.setMessage(teleportPlaceConfig);
             data.setTargetLocation(teleportPlaceConfig.getString("target",""));
+            data.setTargetServer(teleportPlaceConfig.getString("server",""));
             data.setKeepOrientation(teleportPlaceConfig.getBoolean("keepOrientation",true));
             setBroadcastAndTitle(data, teleportPlaceConfig);
             teleportPlaces.add(data);
@@ -207,7 +208,7 @@ public class PluginData {
             Location qLoc = data.getLocation();
             if(data.isInside(location)) {
                 if(data instanceof TeleportData) {
-                    log("found target world: "+((TeleportData)data).getTargetLocation().getWorld().getName());
+                    //log("found target world: "+((TeleportData)data).getTargetLocation().getWorld().getName());
                 }
                 return data;
             }

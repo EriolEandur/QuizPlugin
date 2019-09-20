@@ -41,6 +41,9 @@ public class TeleportData extends LocationData{
     @Getter
     private FancyMessage message;
     
+    @Getter
+    private String server;
+    
     public void setTargetLocation(String data) {
         targetLocation = locationFromString(data);
     }
@@ -49,6 +52,9 @@ public class TeleportData extends LocationData{
         message = messageFromConfig(data, PluginData.getTeleportColor());
     }
 
+    public void setTargetServer(String server) {
+        this.server = server;
+    }
 
     
 }

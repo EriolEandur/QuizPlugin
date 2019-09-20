@@ -1,6 +1,6 @@
 name: NewPlayerQuiz
 main: com.mcmiddleearth.newPlayerQuiz.NewPlayerQuizPlugin
-version: 1.0.2_delag
+version: 1.0.3_bungee
 description: New Player Quiz Plugin
 load: POSTWORLD
 depend: [Multiverse-Core,PluginUtils]

@@ -16,11 +16,17 @@
  */
 package com.mcmiddleearth.newPlayerQuiz.listener;
 
+import com.mcmiddleearth.connect.Channel;
+import com.mcmiddleearth.connect.util.ConnectUtil;
+import com.mcmiddleearth.newPlayerQuiz.NewPlayerQuizPlugin;
 import com.mcmiddleearth.newPlayerQuiz.PluginData;
 import com.mcmiddleearth.newPlayerQuiz.data.QuestionData;
 import com.mcmiddleearth.newPlayerQuiz.data.TeleportData;
+import com.mcmiddleearth.pluginutil.TitleUtil;
 import com.mcmiddleearth.pluginutil.message.FancyMessage;
 import java.util.logging.Logger;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -30,6 +36,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 
 /**
  *
@@ -37,9 +44,9 @@ import org.bukkit.event.player.PlayerTeleportEvent;
  */
 public class PlayerListener implements Listener{
 
-    @EventHandler
-    public void onInteract(PlayerInteractEvent event) {
-    /*}
+    //@EventHandler
+    //public void onInteract(PlayerInteractEvent event) {
+    //*}
     
     @EventHandler
     public void onPlayerMoves(PlayerMoveEvent event){
@@ -51,7 +58,7 @@ public class PlayerListener implements Listener{
                 PluginData.removeQuizScoreboard(event.getPlayer());
             }
             return;
-        }*/
+        }//*/
         Player player = event.getPlayer();
         QuestionData question = PluginData.questionFor(event.getPlayer().getLocation());
         if(question!=null) {
@@ -67,17 +74,39 @@ public class PlayerListener implements Listener{
                 return;
             }*/
             //if(teleport!=PluginData.teleportFor(event.getFrom())) {
+                String server = teleport.getServer();
                 Location target = teleport.getTargetLocation();
-                event.getPlayer().teleport(PluginData.calculateTargetLocation(target, 
-                                                                           player.getLocation(), 
-                                                                           teleport.isKeepOrientation()),
-                                           PlayerTeleportEvent.TeleportCause.PLUGIN);
-                PluginData.log(teleport.getTargetLocation().getWorld().getName());
+                target = PluginData.calculateTargetLocation(target, 
+                                    player.getLocation(), 
+                                    teleport.isKeepOrientation());
                 FancyMessage message = teleport.getMessage();
                 if(message!=null) {
                     message.send(player);
                 }
-                teleport.sendBroadcastMessageAndTitle(player);
+                if(server.equals("")) {
+                    event.getPlayer().teleport(target,
+                                               PlayerTeleportEvent.TeleportCause.PLUGIN);
+                    PluginData.log(teleport.getTargetLocation().getWorld().getName());
+                    teleport.sendBroadcastMessageAndTitle(player);
+                } else {
+                    //bungee
+                    PluginData.removeQuizScoreboard(player);
+                    //if(!PluginData.hasFinishedQuiz(player)) {
+                        PluginData.setFinishedQuiz(player);
+                        ConnectUtil.sendTitle(player, server, player.getName(),
+                                teleport.getWelcomeTitle(),teleport.getWelcomeSubtitle(),
+                                /*ChatColor.GOLD+"Welcome",ChatColor.GREEN+"to Middle-earth" ,*/ 20,200,20,8000);
+                        ConnectUtil.sendMessage(player, server, Channel.ALL, 
+                                teleport.getBroadcastMessage().replace("_@p_", player.getName()),
+                                /*ChatColor.GOLD+"["+ChatColor.DARK_RED+"Broadcast"+ChatColor.GOLD+"] "
+                                +ChatColor.GREEN+player.getName()+ChatColor.BLUE+ChatColor.BOLD
+                                +"just joined! Welcome to Middle-earth!",*/15000);
+                    //}
+Logger.getGlobal().info("Teleport "+player.getName()+" to "+server);
+                    ConnectUtil.teleportPlayer(player, server, 
+                                               "world", 
+                                               teleport.getTargetLocation());
+                }
             //}
         }
     }
