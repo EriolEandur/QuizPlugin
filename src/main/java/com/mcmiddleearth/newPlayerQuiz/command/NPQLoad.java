@@ -5,11 +5,10 @@
  */
 package com.mcmiddleearth.newPlayerQuiz.command;
 
-import com.mcmiddleearth.newPlayerQuiz.data.PluginData;
-import com.mcmiddleearth.newPlayerQuiz.utils.MessageUtil;
+import com.mcmiddleearth.newPlayerQuiz.NewPlayerQuizPlugin;
+import com.mcmiddleearth.newPlayerQuiz.PluginData;
+import com.mcmiddleearth.pluginutil.message.MessageUtil;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.ConsoleCommandSender;
-import org.bukkit.entity.Player;
 
 /**
  *
@@ -24,16 +23,12 @@ class NPQLoad extends AbstractCommand {
     @Override
     protected void execute(CommandSender cs, String... args) {
         try{
-            if(args.length<1) {
-                PluginData.loadFromFile(null);
-            }
-            else {
-                PluginData.loadFromFile(args[0]);
-            }
-        MessageUtil.sendInfoMessage(cs, "Quiz data loaded.");
+            NewPlayerQuizPlugin.getPluginInstance().reloadConfig();
+            PluginData.load();
+            PluginData.getMessageUtil().sendInfoMessage(cs, "Quiz data loaded.");
         }
         catch(Exception e) {
-            MessageUtil.sendErrorMessage(cs, "There was an error while loading quizData");
+            PluginData.getMessageUtil().sendErrorMessage(cs, "There was an error while loading quizData");
         }
     }
 }

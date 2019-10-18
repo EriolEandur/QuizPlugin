@@ -1,13 +1,17 @@
-name: NewPlayerQuiz
+name: ${project.artifactId}
 main: com.mcmiddleearth.newPlayerQuiz.NewPlayerQuizPlugin
-version: 1.0
+version: ${project.version}
 description: New Player Quiz Plugin
 load: POSTWORLD
-depend: [Multiverse-Core]
+depend: [Multiverse-Core,PluginUtils]
+api-version: 1.13
+
 commands:
     npq:
         description: manages new player quiz
         usage: /npq load|debug|delay
 permissions:
-    newplayerquiz:
+    npq.user:
         default: true
+    npq.admin: 
+        default: op

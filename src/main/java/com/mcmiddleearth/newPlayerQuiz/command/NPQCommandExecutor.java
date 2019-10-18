@@ -5,7 +5,8 @@
  */
 package com.mcmiddleearth.newPlayerQuiz.command;
 
-import com.mcmiddleearth.newPlayerQuiz.utils.MessageUtil;
+import com.mcmiddleearth.newPlayerQuiz.PluginData;
+import com.mcmiddleearth.pluginutil.message.MessageUtil;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -24,9 +25,10 @@ public class NPQCommandExecutor implements CommandExecutor {
     private final Map <String, AbstractCommand> commands = new LinkedHashMap <>();
     
     public NPQCommandExecutor() {
-        addCommandHandler("load", new NPQLoad("newplayerquiz"));
-        addCommandHandler("debug", new NPQDebug("newplayerquiz"));
-        addCommandHandler("delay", new NPQDelay("newplayerquiz"));
+        addCommandHandler("load", new NPQLoad("npq.admin"));
+        addCommandHandler("debug", new NPQDebug("npq.admin"));
+        addCommandHandler("delay", new NPQDelay("npq.admin"));
+        addCommandHandler("answer", new NPQAnswer("npq.user"));
     }
     
     @Override
@@ -47,11 +49,11 @@ public class NPQCommandExecutor implements CommandExecutor {
     }
 
     private void sendNoSubcommandErrorMessage(CommandSender cs) {
-        MessageUtil.sendErrorMessage(cs, "You're missing subcommand name for this command.");
+        PluginData.getMessageUtil().sendErrorMessage(cs, "You're missing subcommand name for this command.");
     }
     
     private void sendSubcommandNotFoundErrorMessage(CommandSender cs) {
-        MessageUtil.sendErrorMessage(cs, "Subcommand not found.");
+        PluginData.getMessageUtil().sendErrorMessage(cs, "Subcommand not found.");
     }
     
     private void addCommandHandler(String name, AbstractCommand handler) {

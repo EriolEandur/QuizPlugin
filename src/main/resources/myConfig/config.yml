@@ -12,7 +12,7 @@ quizPlaces:
       - the community rules at our [Click="http://www.mcmiddleearth.com/pages/new-player-guide/"][Hover="§aClick to open"]
       - §bNew Player Guide[/Hover][/Click].
       - \n Please switch on server textures or manually use our 
-      - resource pack [Click="http://build.mcmiddleearth.com/content/Gondor.zip"][Hover="§aClick to download."]§b'Gondor'[/Hover][/Click].
+      - resource pack [Click="http://www.mcmiddleearth.com/content/Gondor.zip"][Hover="§aClick to download."]§b'Gondor'[/Hover][/Click].
       - \n\n Psst, click at [Hover="§aYou got it :)"]§bblue text[/Hover] or point at it with your mouse cursor for more information.
   - name: practice
     correct: start
@@ -40,7 +40,7 @@ quizPlaces:
   - name: first
     correct: C
     location: newplayerworld -1360 44 1165
-    size: 2 3 2
+    size: 1 3 1
     message:
       - \n[Hover="Click at the right answer."]§6What is MCME?[/Hover]
       - \n   [Click="/npq answer first A"]§b[A]§e A Middle-earth PvP server[/Click].
@@ -72,11 +72,11 @@ quizPlaces:
   - name: second
     correct: proceed
     location: newplayerworld -1361 50 1182
-    size: 2 3 2
+    size: 1 3 1
     message:
       - §r[Hover="Click to get redirected to the websites!"]§6Minecraft Middle-earth also has:[/Hover]
       - \n   §6->§e [Click="http://www.mcmiddleearth.com"][Hover="§aOur main communication tool!"]§bMCME Forums[/Hover][/Click]
-      - \n   §6->§e [Click="https://discord.gg/HVAzTcR"][Hover="§aWhere we meet for jobs and hanging §aout!"]§bDiscord[/Hover][/Click]
+      - \n   §6->§e [Click="http://www.mcmiddleearth.com/resources/teamspeak-guide.44/"][Hover="§aWhere we meet for jobs and hanging §aout!"]§bTeamspeak[/Hover][/Click]
       - \n   §6->§e [Hover="§awhere we share awesome things!"][Click="https://www.youtube.com/user/MiddleEarthMinecraft"]§bYoutube[/Click], [Click="https://www.facebook.com/mcmeproject/"]§bFacebook[/Click], [Click="https://twitter.com/MCMiddleEarth"]§bTwitter[/Click][/Hover]
       - \n [Click="/npq answer second proceed"]§e>> §bClick to proceed! §e<<[/Click].
     success:
@@ -117,13 +117,13 @@ quizPlaces:
   - name: fourth
     correct: proceed
     location: newplayerworld -1346 48 1215
-    size: 2 3 2
+    size: 1 3 1
     message:
       - \n §6When you first join MCME your rank is called Adventurer. 
       - \n §6Here’s what you can do as Adventurer!
       - \n   §6->§e Explore the Middle-earth map, by [Hover="§aPssst, also you can fly ;)"]§bfoot[/Hover] or by warping \n       around.
       - \n   §6->§e Ask for a tour lead by a Guide around the server.
-      - \n   §6->§e Help building Middle-earth with a job or plotbuild. 
+      - \n   §6->§e Help building Middle-earth through a [Click="http://www.mcmiddleearth.com/threads/scheduled-jobs-and-open-plotbuilds-updated-for-sat-june-4th.2741/"][Hover="Click here for information about jobs and plotbuilds."]§bjob or plotbuild[/Hover][/Click]. 
       - \n       Ask a [Hover="§2Designers §eplan projects and organise building. More challenging builds are usually given to experienced builders with §5Artist§e rank.
       - But if a §2Designer §ehas something not too difficult to build he will probably start a job for §7Adventurers§e. You can see active jobs using '§6/job check§e'. If there is a job you may join the job with '§6/job join <jobname>§e'"]§bDesigner[/Hover] for that.
       - \n [Click="/npq answer fourth proceed"]§e >> §bClick to proceed! §e<<[/Click].
@@ -135,7 +135,7 @@ quizPlaces:
   - name: fifth
     correct: A
     location: newplayerworld -1331 45 1227
-    size: 2 3 2
+    size: 1 3 1
     message:
       - §6What is forbidden by the rules of MCME?
       - \n    [Click="/npq answer fifth A"]§b[A]§e Downloading of any part of the map.[/Click]
@@ -166,7 +166,7 @@ quizPlaces:
   - name: sixth
     correct: B
     location: newplayerworld -1337 48 1244
-    size: 2 3 2
+    size: 1 3 1
     message:
       - \n §6There are rules on MCME to ensure a secure and friendly §6environment. Which of the following is a social rule on MCME?
       - \n    [Click="/npq answer sixth A"]§b[A]§e Advertising other servers is allowed[/Click].
@@ -196,7 +196,7 @@ quizPlaces:
   - name: seventh
     correct: proceed
     location: newplayerworld -1349 43 1277
-    size: 2 3 2
+    size: 1 3 1
     message:
       - \n §6All players §c§lmust know§6 the following information:\n 
       - §r  §6->§e English must be used on all [Hover="Ingame you may send private messages to a player using 
@@ -213,7 +213,7 @@ quizPlaces:
   - name: info
     correct: proceed
     location: newplayerworld -1356 37 1306
-    size: 2 3 2
+    size: 1 3 1
     message:
       - \n §6         You reached the end of the quiz. \n
       - \n You may now enter Middle-earth, go and explore.  
@@ -223,7 +223,7 @@ quizPlaces:
     success:
         message:
           - \n Just follow the path across the water. \n\n But be warned with §2Bilbo's§a words:§a "It's a dangerous business, Frodo, going out of your door. You step into the Road, and if you don't keep your feet ... if you let it, 
-          - it might take you to the [Hover="No, §6Erebor§e is not built yet. \n But we will build it for sure ;) \n \n We are focussing on the places from LotR. We started at the §6Shire§e in October 2010 and are roughly following the story line of LotR since then."]§bLonely Mountain[/Hover] or even further..."
+          - it might take you to the [Hover="No, §6Erebor§e is not built yet. \n But we will build it for sure ;) \n \n We are focussing on the places from LotR. We started at the §6Shire§e in October 2010 and are roughly following the story line of LotR since then."]§bLonly Mountain[/Hover] or even further..."
         target: newplayerworld -1356 37 1308
         nextStep: 8
 teleportPlaces:
