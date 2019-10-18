@@ -18,25 +18,22 @@ package com.mcmiddleearth.newPlayerQuiz.listener;
 
 import com.mcmiddleearth.connect.Channel;
 import com.mcmiddleearth.connect.util.ConnectUtil;
-import com.mcmiddleearth.newPlayerQuiz.NewPlayerQuizPlugin;
 import com.mcmiddleearth.newPlayerQuiz.PluginData;
 import com.mcmiddleearth.newPlayerQuiz.data.QuestionData;
 import com.mcmiddleearth.newPlayerQuiz.data.TeleportData;
-import com.mcmiddleearth.pluginutil.TitleUtil;
 import com.mcmiddleearth.pluginutil.message.FancyMessage;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 import java.util.logging.Logger;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
-import org.bukkit.scheduler.BukkitRunnable;
 
 /**
  *
@@ -47,9 +44,16 @@ public class PlayerListener implements Listener{
     //@EventHandler
     //public void onInteract(PlayerInteractEvent event) {
     //*}
+    private Map<UUID,Long> informed = new HashMap<>();
     
     @EventHandler
     public void onPlayerMoves(PlayerMoveEvent event){
+        Map<UUID,Long> remove = new HashMap<>();
+        informed.forEach((uuid,time) -> {
+            if(time+2000<System.currentTimeMillis()) {
+                remove.put(uuid,time);
+            }});
+        remove.forEach((uuid,time)-> informed.remove(uuid,time));
         if(movedWithinBlock(event.getFrom(),event.getTo())) {
             return;
         }
@@ -61,12 +65,15 @@ public class PlayerListener implements Listener{
         }//*/
         Player player = event.getPlayer();
         QuestionData question = PluginData.questionFor(event.getPlayer().getLocation());
-        if(question!=null) {
+        Long lastTime = informed.get(player.getUniqueId());
+        if(question!=null 
+                && (lastTime==null || lastTime+2000<System.currentTimeMillis())) {
             /*if(question.isInside(event.getFrom())) {
                 return;
             }*/
             PluginData.clearChat(player);
             question.getQuizMessage().send(player);
+            informed.put(player.getUniqueId(), System.currentTimeMillis());
         }
         TeleportData teleport = PluginData.teleportFor(event.getPlayer().getLocation());
         if(teleport!= null) {
@@ -91,7 +98,7 @@ public class PlayerListener implements Listener{
                 } else {
                     //bungee
                     PluginData.removeQuizScoreboard(player);
-                    //if(!PluginData.hasFinishedQuiz(player)) {
+                    if(!PluginData.hasFinishedQuiz(player)) {
                         PluginData.setFinishedQuiz(player);
                         ConnectUtil.sendTitle(player, server, player.getName(),
                                 teleport.getWelcomeTitle(),teleport.getWelcomeSubtitle(),
@@ -101,7 +108,7 @@ public class PlayerListener implements Listener{
                                 /*ChatColor.GOLD+"["+ChatColor.DARK_RED+"Broadcast"+ChatColor.GOLD+"] "
                                 +ChatColor.GREEN+player.getName()+ChatColor.BLUE+ChatColor.BOLD
                                 +"just joined! Welcome to Middle-earth!",*/15000);
-                    //}
+                    }
 Logger.getGlobal().info("Teleport "+player.getName()+" to "+server);
                     ConnectUtil.teleportPlayer(player, server, 
                                                "world", 
