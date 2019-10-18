@@ -4,6 +4,7 @@ version: ${project.version}
 description: New Player Quiz Plugin
 load: POSTWORLD
 depend: [Multiverse-Core,PluginUtils]
+api-version: 1.13
 
 commands:
     npq:

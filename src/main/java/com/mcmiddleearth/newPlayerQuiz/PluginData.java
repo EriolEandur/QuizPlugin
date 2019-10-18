@@ -85,7 +85,7 @@ public class PluginData {
     @Setter
     private static int defaultBroadcastDelay=100;
     
-    private static final int numberOfChatLines = 2;
+    private static final int numberOfChatLines = 30;
     
     private static final File finishedPlayerFile = new File(NewPlayerQuizPlugin.getPluginInstance().getDataFolder(),
                                                             "finishedPlayerList.uid");
@@ -296,7 +296,7 @@ public class PluginData {
     public static void clearChat(Player player) {
         String message = "";
         for(int i=0; i<numberOfChatLines;i++) {
-            message = message + "\n";
+            message = message + ChatColor.DARK_GRAY+"_\n";
         }
         player.sendMessage(message);
     }
