@@ -20,6 +20,7 @@ import com.mcmiddleearth.newPlayerQuiz.data.LocationData;
 import com.mcmiddleearth.newPlayerQuiz.data.QuestionData;
 import com.mcmiddleearth.newPlayerQuiz.data.TeleportData;
 import com.mcmiddleearth.newPlayerQuiz.scoreboard.QuizScoreboard;
+import com.mcmiddleearth.pluginutil.NumericUtil;
 import com.mcmiddleearth.pluginutil.message.MessageUtil;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -73,6 +74,9 @@ public class PluginData {
     
     private static int numberOfSecondChances, numberOfSteps;
     
+    //Dirty: same quiz area box is used for all worlds.
+    private static final int[] quizAreaBox = new int[6];
+
     @Getter
     private static ChatColor questionColor, retryColor, failColor, teleportColor, successColor;
     
@@ -105,6 +109,10 @@ public class PluginData {
         messageUtil.setPluginName("NewPlayerQuiz");
         numberOfSecondChances = config.getInt("numberOfSecondChances",2);
         numberOfSteps = config.getInt("numberOfSteps",7);
+        String[] boxTemp = config.getString("quizAreaBox","-1367 -1325 29 59 1137 1334").split(" ");
+        for(int i = 0; i< boxTemp.length; i++) {
+            quizAreaBox[i] = NumericUtil.getInt(boxTemp[i]);
+        }
         List<String> worldNames = config.getStringList("worlds");
         for(String name : worldNames) {
             World world = Bukkit.getWorld(name);
@@ -194,6 +202,13 @@ public class PluginData {
         data.setWelcomeSubtitle(config.getString("welcomeSubtitle",""));
     }
  
+    public static boolean isInQuizArea(Player player) {
+        Location loc = player.getLocation();
+        return quizAreaBox[0]<loc.getX() && quizAreaBox[1]>loc.getX()
+            && quizAreaBox[1]<loc.getY() && quizAreaBox[3]>loc.getY()     
+            && quizAreaBox[4]<loc.getZ() && quizAreaBox[5]>loc.getZ();     
+    }
+    
     public static QuestionData questionFor(Location location) {
         return (QuestionData) dataFor(location, quizPlaces);
     }

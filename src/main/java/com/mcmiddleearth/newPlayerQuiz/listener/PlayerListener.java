@@ -31,6 +31,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
@@ -103,7 +104,7 @@ public class PlayerListener implements Listener{
                         ConnectUtil.sendTitle(player, server, player.getName(),
                                 teleport.getWelcomeTitle(),teleport.getWelcomeSubtitle(),
                                 /*ChatColor.GOLD+"Welcome",ChatColor.GREEN+"to Middle-earth" ,*/ 20,200,20,8000);
-                        ConnectUtil.sendMessage(player, server, Channel.ALL, 
+                        ConnectUtil.sendMessage(player, Channel.ALL, Channel.ALL, 
                                 teleport.getBroadcastMessage().replace("_@p_", player.getName()),
                                 /*ChatColor.GOLD+"["+ChatColor.DARK_RED+"Broadcast"+ChatColor.GOLD+"] "
                                 +ChatColor.GREEN+player.getName()+ChatColor.BLUE+ChatColor.BOLD
@@ -124,6 +125,13 @@ Logger.getGlobal().info("Teleport "+player.getName()+" to "+server);
             if(PluginData.getQuizScoreboard(event.getPlayer())!=null) {
                 PluginData.removeQuizScoreboard(event.getPlayer());
             }
+        }
+    }
+    
+    @EventHandler
+    public void playerJoin(PlayerJoinEvent event) {
+        if(!PluginData.isInQuizArea(event.getPlayer())) {
+            event.getPlayer().teleport(event.getPlayer().getLocation().getWorld().getSpawnLocation());
         }
     }
     
